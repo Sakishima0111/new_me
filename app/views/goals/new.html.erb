@@ -1,0 +1,6 @@
+<h1>Goals#new</h1>
+<p>Find me in app/views/goals/new.html.erb</p>
+
+<%= form_with model: @goal, url: goals_new_path, method: :patch do |f| %>
+  <%= f.rich_text_area :content %>
+<% end %>
