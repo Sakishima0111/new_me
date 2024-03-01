@@ -1,0 +1,7 @@
+<h1>Goals#index</h1> 
+<% @goals.each do |goal| %>
+  <%= link_to goal.title, goal_path(goal.id) %>
+  <%= goal.content %>
+  <%= goal.deadline %>
+  <%= goal.reward %>
+<% end %>

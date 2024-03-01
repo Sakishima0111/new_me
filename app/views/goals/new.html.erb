@@ -1,7 +1,42 @@
-<h1>Goals#new</h1>
-<p>Find me in app/views/goals/new.html.erb</p>
+<div class="container">
+  <div class="row">
+  <h1>Goals#new</h1>
+  <p>Find me in app/views/goals/new.html.erb</p>
+    <h2>Setting new goal!</h2>
+      <div class="mx-auto">
+        <%= form_with model: @goal, url: goals_path, method: :post do |f| %>
+          <div class="form-group row">
+            <%= f.label :title, '目標のタイトル', class: 'col-sm-3 col-form-label' %>
+            <div class="col-sm-9">
+              <%= f.text_area :title, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :content, '目標達成するための具体的な方法', class: 'col-sm-3 col-form-label' %>
+            <div class="col-sm-9">
+              <%= f.rich_text_area :content %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :deadline, '期限を設定', class: 'col-sm-3 col-form-label' %>
+            <div class="col-sm-9">
+              <%= f.datetime_select :deadline, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :reward, '達成後のご褒美', class: 'col-sm-3 col-form-label' %>
+            <div class="col-sm-9">
+              <%= f.text_area :reward, class: 'form-control' %>
+            </div>
+          </div>
+          <!--進捗ステータスを入力できるようにする-->
 
-<%= form_with model: @goal, url: goals_new_path, method: :patch do |f| %>
-  
-  <%= f.rich_text_area :content %>
-<% end %>
+          <div class="form-group row">
+          <div class="col-sm-9 ">
+            <%= f.submit '目標を設定する！', class: 'btn btn-success' %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+  </div>
+</div>

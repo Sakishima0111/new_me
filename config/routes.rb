@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
 # ユーザー用
 # URL /users/sign_in ...
 devise_for :users, skip: [:passwords], controllers: {
   registrations: "user/registrations",
   sessions: 'user/sessions'
 }
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
 
 # 管理者用
 # URL /admin/sign_in ...
@@ -15,14 +20,19 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #ユーザー側
   root to: "homes#top"
   get '/about' => "homes#about"
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    resource :relationships, only: [:create, :destroy]
+    get :follows, on: :member # フォロー一覧
+    get :followers, on: :member #フォロワー一覧
+  end
   # 退会確認画面
-  get  '/users/check' => 'customers#check'
+  get  '/users/check' => 'users#check'
   # 論理削除用のルーティング
-  patch  '/users/withdraw' => 'customers#withdraw'
+  patch  '/users/withdraw' => 'users#withdraw'
+
   resources :cheers, only: [:index]
   resources :categories, only: [:index, :show]
-  resources :goals, only: [:new, :edit, :show]
+  resources :goals, only: [:new, :edit, :show, :index, :create, :destroy]
 
 
 #管理者側
