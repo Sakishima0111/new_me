@@ -6,8 +6,8 @@ class GoalsController < ApplicationController
   
   def create
     @goal = Goal.new(goal_params)
-    @Goal.user_id = current_user.id
-    @Goal.save
+    @goal.user.id = current_user.id
+    @goal.save
     redirect_to user_path(current_user.id), notice: "新たな目標を設定しました！"
   end
   

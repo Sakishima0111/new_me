@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :image
-  
-  
+
+
   #フォローする側のUserから見て、フォローされる側のUserを(中間テーブルを介して)集める。なので親はfollowing_id(フォローする側)
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
   # 中間テーブルを介して「follower」モデルのUser(フォローされた側)を集めることを「followings」と定義
@@ -18,4 +18,8 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (is_active == true)
   end
+  def self.ransackable_attributes(auth_object = nil)
+    ["introduction", "nickname"]
+  end
+
 end

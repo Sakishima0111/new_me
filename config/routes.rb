@@ -26,10 +26,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get :followers, on: :member #フォロワー一覧
   end
   # 退会確認画面
-  get  '/users/check' => 'users#check'
+  get  '/users/check' => 'users#check', as: 'check_user'
   # 論理削除用のルーティング
   patch  '/users/withdraw' => 'users#withdraw'
-
+  # ransackの検索
+  get "/search" => "searches#search"
   resources :cheers, only: [:index]
   resources :categories, only: [:index, :show]
   resources :goals, only: [:new, :edit, :show, :index, :create, :destroy]
