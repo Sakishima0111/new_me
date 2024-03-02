@@ -1,0 +1,11 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+  enums:
+    goal:
+      status:
+        not_started: "未着手"
+        in_progress: "進行中"
+        completed: "達成"
+        closed: "終了"

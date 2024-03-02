@@ -1,15 +1,74 @@
-<% if user_signed_in? %>
-  <%= link_to "マイページ", user_path(current_user.id) %>
-  <%= link_to "目標新規登録", new_goal_path %>
-  <%= link_to "目標一覧", goals_path %>
-  <%= link_to "フォロー一覧", follows_user_path(current_user.id) %>
-  <%= link_to "フォロワー一覧", followers_user_path(current_user.id) %>
-  <%= link_to "使い方", about_path %>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-  <%= render 'layouts/search' %>
-<% else %>
-  <%= link_to "Top", root_path %>
-  <%= link_to "About", about_path %>
-  <%= link_to "新規登録", new_user_registration_path %>
-  <%= link_to "ログイン", new_user_session_path %>
-<% end %>
+<!--<nav class="navbar bg-body-tertiary fixed-top">-->
+<!--  <div class="container-fluid">-->
+<!--    <a class="navbar-brand" href="#">New Me</a>-->
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">-->
+<!--      <div class="offcanvas-header">-->
+<!--        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>-->
+<!--        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+<!--      </div>-->
+<!--      <div class="offcanvas-body">-->
+<!--        <% if user_signed_in? %>-->
+<!--          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">-->
+<!--            <li class="nav-item">-->
+<!--              <%= link_to "マイページ", user_path(current_user.id), class: "nav-link active" %>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <%= link_to "目標新規登録", new_goal_path, class: "nav-link active" %>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <%= link_to "目標一覧", goals_path, class: "nav-link active" %>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <%= link_to "フォロー一覧", follows_user_path(current_user.id), class: "nav-link active" %>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <%= link_to "使い方", about_path, class: "nav-link active" %>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link active" %>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--          <%= render 'layouts/search' %>-->
+<!--        <% else %>-->
+<!--          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">-->
+<!--            <li class="nav-item">-->
+<!--              <%= link_to "Top", root_path, class: "nav-link active" %>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <%= link_to "About", about_path, class: "nav-link active" %>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <%= link_to "新規登録", new_user_registration_path, class: "nav-link active" %>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <%= link_to "ログイン", new_user_session_path, class: "nav-link active" %>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        <% end %>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+
+<div class="container">
+
+      <% if user_signed_in? %>
+        <%= link_to "マイページ", user_path(current_user.id), data: {"turbolinks" => false} %>
+        <%= link_to "目標新規登録", new_goal_path  %>
+        <%= link_to "目標一覧", goals_path %>
+        <%= link_to "フォロー一覧", follows_user_path(current_user.id) %>
+        <%= link_to "フォロワー一覧", followers_user_path(current_user.id) %>
+        <%= link_to "使い方", about_path %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= render 'layouts/search' %>
+      <% else %>
+        <%= link_to "Top", root_path %>
+        <%= link_to "About", about_path %>
+        <%= link_to "新規登録", new_user_registration_path %>
+        <%= link_to "ログイン", new_user_session_path %>
+      <% end %>
+
+</div>
