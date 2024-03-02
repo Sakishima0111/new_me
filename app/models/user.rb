@@ -15,6 +15,7 @@ class User < ApplicationRecord
   # 中間テーブルを介して「following」モデルのUser(フォローする側)を集めることを「followers」と定義
   has_many :followers, through: :passive_relationships, source: :following
   has_many :goals, dependent: :destroy
+  has_many :cheers, dependent: :destroy
   def active_for_authentication?
     super && (is_active == true)
   end

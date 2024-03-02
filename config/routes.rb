@@ -33,7 +33,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   get "/search" => "searches#search"
   resources :cheers, only: [:index]
   resources :categories, only: [:index, :show]
-  resources :goals, only: [:new, :edit, :show, :index, :create, :destroy]
+  resources :goals, only: [:new, :edit, :show, :index, :create, :destroy] do
+    resource :cheers, only: [:create, :destroy, :index]
+  end
 
 
 #管理者側
