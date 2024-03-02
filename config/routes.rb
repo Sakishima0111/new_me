@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'comments/destroy'
   get 'relationships/create'
   get 'relationships/destroy'
 # ユーザー用
@@ -35,6 +37,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   resources :categories, only: [:index, :show]
   resources :goals, only: [:new, :edit, :show, :index, :create, :destroy] do
     resource :cheers, only: [:create, :destroy, :index]
+    resource :comment, only: [:create, :destroy]
   end
 
 

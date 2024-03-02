@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :following
   has_many :goals, dependent: :destroy
   has_many :cheers, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  
   def active_for_authentication?
     super && (is_active == true)
   end

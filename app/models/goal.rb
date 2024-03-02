@@ -1,5 +1,6 @@
 class Goal < ApplicationRecord
   has_many :cheers, dependent: :destroy
+  has_many :comments, dependent: :destroy
   belongs_to :user
   # action textの使用
   has_rich_text :content
