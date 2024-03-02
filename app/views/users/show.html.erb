@@ -14,9 +14,9 @@
       <% else %>
         <%= image_tag 'no_image', size: "200x200"  %>
       <% end %>
-      <h3><%= @user.nickname %></h3>
     </div>
     <div class="col-md-9">
+      <h3><%= @user.nickname %></h3>
       <%= @user.introduction %><br>
       <%= link_to "プロフィール情報を編集", edit_user_path(current_user), class: "btn btn-primary"%>
     </div>
@@ -27,13 +27,13 @@
           <p><%=link_to "フォローする", user_relationships_path(@user.id), class: "btn btn-success",method: :post %></p>
         <% end %>
       <% end %>
-    
+
   </div>
 <hr>
 
 <div class="card-deck">
   <% @goals.each do |goal| %>
-  <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card border-dark mb-3" style="max-width: 250px; min-width: 250px;">
     <div class="card-header"><%= l goal.deadline %></div>
     <div class="card-body">
       <h5 class="card-title"><%=link_to goal.title, goal_path(goal.id) %></h5>

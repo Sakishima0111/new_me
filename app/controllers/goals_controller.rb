@@ -24,14 +24,10 @@ class GoalsController < ApplicationController
   end
   
   def update
-    goal = Goal.find(params[:id])
-    if goal.update(goal_params)
-       redirect_to user_path(current_user.id)
-       flash[:notice] = "目標を編集しました！"
+    if @goal.update(goal_params)
+      redirect_to goal_path(@goal), notice: "You have updated book successfully."
     else
-      @goal=Goal.find(params[:id])
-      @goal.update(goal_params)
-      render :edit
+      render "edit"
     end
   end  
   

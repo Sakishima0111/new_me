@@ -5,5 +5,8 @@
       <p>limit: <%= l @goal.deadline %></p>
       <%= @goal.reward %><br>
       <%= @goal.status_i18n %>
+      <%= render "cheers/btn", goal: @goal %>
+      <%= link_to "編集する", edit_goal_path(@goal.id), class: "btn btn-success" %>
+      <%= link_to "削除する", goal_path(@goal.id), class: "btn btn-danger", method: :delete %>
   </div>
 </div>
