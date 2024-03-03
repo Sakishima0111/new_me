@@ -9,10 +9,21 @@
               <%= f.text_area :title, class: 'form-control' %>
             </div>
           </div>
-          <div class="form-group row">
-            <%= f.label :content, '目標達成するための具体的な方法', class: 'col-sm-3 col-form-label', for: 'goal_way'  %>
+          <!--インフォメーションボタンここから-->
+          <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <i class="fa-regular fa-circle-question text-light"></i>
+          </button>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              目標を達成するための方法を具体的に書き出してみましょう。
+              箇条書きやリストの作成、参考リンクなども貼ることができます。
+            </div>
+          </div>
+          <!--ここまで-->
+           <div class="form-group row">
+              <%= f.label :content, '目標達成するための方法', class: 'col-sm-3 col-form-label', for: 'goal_way'  %>
             <div class="col-sm-9">
-            <%= f.rich_text_area :content, class: 'form-control', id: 'goal_way' %>
+            <%= f.rich_text_area :content, id: 'goal_way' %>
             </div>
           </div>
           <div class="form-group row">

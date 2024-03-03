@@ -13,7 +13,7 @@
         <% if user_signed_in? %>
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <%= link_to "マイページ", user_path(current_user.id), class: "nav-link active" %>
+              <%= link_to "マイページ", user_path(current_user.id), class: "nav-link active", data: {"turbolinks" => false} %>
             </li>
             <li class="nav-item">
               <%= link_to "目標新規登録", new_goal_path, class: "nav-link active" %>
@@ -23,6 +23,9 @@
             </li>
             <li class="nav-item">
               <%= link_to "フォロー一覧", follows_user_path(current_user.id), class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+            <%= link_to "フォロワー一覧", followers_user_path(current_user.id), class: "nav-link active" %>
             </li>
             <li class="nav-item">
               <%= link_to "使い方", about_path, class: "nav-link active" %>
@@ -53,22 +56,3 @@
   </div>
 </nav>
 
-<!--<div class="container">-->
-
-<!--      <% if user_signed_in? %>-->
-<!--        <%= link_to "マイページ", user_path(current_user.id), data: {"turbolinks" => false} %>-->
-<!--        <%= link_to "目標新規登録", new_goal_path  %>-->
-<!--        <%= link_to "目標一覧", goals_path %>-->
-<!--        <%= link_to "フォロー一覧", follows_user_path(current_user.id) %>-->
-<!--        <%= link_to "フォロワー一覧", followers_user_path(current_user.id) %>-->
-<!--        <%= link_to "使い方", about_path %>-->
-<!--        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>-->
-<!--        <%= render 'layouts/search' %>-->
-<!--      <% else %>-->
-<!--        <%= link_to "Top", root_path %>-->
-<!--        <%= link_to "About", about_path %>-->
-<!--        <%= link_to "新規登録", new_user_registration_path %>-->
-<!--        <%= link_to "ログイン", new_user_session_path %>-->
-<!--      <% end %>-->
-
-<!--</div>-->

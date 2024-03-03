@@ -11,6 +11,7 @@
           </p>
           <%= render "cheers/btn", goal: @goal %>
           <i class="fa-regular fa-message"></i> <%= @goal.comments.count %>
+          <%= time_ago_in_words(@goal.created_at) %>前
           <%= link_to edit_goal_path(@goal.id), class: "btn btn-success rounded-pill" do %>
           <i class="fa-solid fa-pen-to-square text-light"></i>
           <% end %>

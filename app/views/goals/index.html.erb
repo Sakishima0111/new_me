@@ -16,6 +16,7 @@
         <p class="card-text"><%= goal.content %><br>
           <%= render "cheers/btn", goal: goal %>
           <i class="fa-regular fa-message"></i> <%= goal.comments.count %>
+          <%= time_ago_in_words(goal.created_at) %>前
         </p>
       </div>
     </div>
