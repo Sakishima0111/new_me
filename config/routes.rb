@@ -22,13 +22,14 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #ユーザー側
   root to: "homes#top"
   get '/about' => "homes#about"
+  # 退会確認画面
+  get  '/users/check' => 'users#check', as: 'check_user'
   resources :users, only: [:show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member # フォロー一覧
     get :followers, on: :member #フォロワー一覧
   end
-  # 退会確認画面
-  get  '/users/check' => 'users#check', as: 'check_user'
+
   # 論理削除用のルーティング
   patch  '/users/withdraw' => 'users#withdraw'
   # ransackの検索
@@ -39,6 +40,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resource :cheers, only: [:create, :destroy, :index]
     resources :comments, only: [:create, :destroy]
   end
+  resources :chats, only: [:show, :create, :destroy]
 
 
 #管理者側

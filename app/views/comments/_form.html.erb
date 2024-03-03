@@ -1,4 +1,6 @@
 <%= form_with model: [goal, comment] do |f| %>
-  <%= f.text_area :body, rows:'5', placeholder: "コメントをここに", class: "w-100" %>
-  <%= f.submit "送信" %>
+  <%= f.text_area :body, rows:'5', placeholder: "応援メッセージを送ろう！", class: "w-100" %>
+ <%= button_tag type: "submit", class: "btn btn-primary" do %>
+  <i class="fa-solid fa-paper-plane text-light"></i>
+  <% end %>
 <% end %>

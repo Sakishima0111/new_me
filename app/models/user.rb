@@ -17,7 +17,9 @@ class User < ApplicationRecord
   has_many :goals, dependent: :destroy
   has_many :cheers, dependent: :destroy
   has_many :comments, dependent: :destroy
-  
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
+  has_many :rooms, through: :user_rooms
   def active_for_authentication?
     super && (is_active == true)
   end
@@ -28,5 +30,7 @@ class User < ApplicationRecord
     # 今自分(引数のuser)がフォローしようとしているユーザー(レシーバー)がフォローされているユーザー(つまりpassive)の中から、引数に渡されたユーザー(自分)がいるかどうかを調べる
     passive_relationships.find_by(following_id: user.id).present?
   end
-
+  def following?(other_user)
+    self.followings.exists?(other_user.id)
+  end
 end
