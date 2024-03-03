@@ -17,5 +17,6 @@
       </div>
       <div class="col-md-2"></div>
     </div>
+    
+    <%= render "comments/index", goal: @goal %>
     <%= render "comments/form", goal: @goal, comment: @comment %>
-      <%= render "comments/index", goal: @goal, comment: @comment %>

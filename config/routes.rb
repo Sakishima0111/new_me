@@ -37,7 +37,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   resources :categories, only: [:index, :show]
   resources :goals, only: [:new, :edit, :show, :index, :create, :destroy] do
     resource :cheers, only: [:create, :destroy, :index]
-    resource :comment, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
 
 
