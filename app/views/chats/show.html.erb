@@ -17,6 +17,9 @@
 
 <%= form_with model: @chat, data: {remote: true} do |f| %>
   <%= f.text_field :message %>
-  <%= f.submit "送信", class: "btn btn-dark btn-sm" %>
+ <%= button_tag type: "submit", class: "btn btn-secondary" do %>
+  <i class="fa-solid fa-paper-plane text-light"></i>
+  <% end %>
   <%= f.hidden_field :room_id %>
 <% end %>
+

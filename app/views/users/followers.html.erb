@@ -2,7 +2,7 @@
 <p>Find me in app/views/users/followers.html.erb</p>
 
 <% @users.each do |user| %>
-  <p><%= link_to user.nickname, user_path(user.id) %></p>
+  <p><%= link_to user.nickname, user_path(user.id), data: {"turbolinks" => false} %></p>
   <p><%= user.introduction %></p>
     <% if current_user != user %>
         <% if user.followed_by?(current_user) %>

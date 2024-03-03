@@ -2,8 +2,8 @@
 　　<%= form_with model: @user do |f| %>
           <label for="inputName">ニックネーム</label><br>
           <%= f.text_field :nickname, autofocus: true, id:"inputName", class: "form-control" %><br>
-          <label for="inputImage">プロフィールイメージ</label><br>
-          <%= f.file_field :image, placeholder: "profile_image", accept: "image/*" %><br>
+          <label for="formFile" class="form-label">プロフィールイメージ</label><br>
+          <%= f.file_field :image, class: "form-control", type: "file", id: "formFile", accept: "image/*" %><br>
           <label for="inputBody">自己紹介</label><br>
           <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction",class: "form-control"%><br>
           <%= f.submit "ユーザー情報を更新する", class: "btn btn-secondary" %>
