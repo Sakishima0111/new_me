@@ -1,0 +1,55 @@
+<% notifications.each do |notification| %>
+  <% visitor = notification.visitor %>
+  <% visited = notification.visited %>
+  <div class="col-md-12 mx-auto notification-container">
+    <div class="notification-box d-flex align-items-center">
+      <div class="notification-icon">
+        <%= link_to user_path(visitor.account), data: { turbolinks: false } do %>
+          <%= image_tag.visitor.image, size: '40x40', class: 'rounded-circle mr-3' %>
+        <% end %>
+      </div>
+
+      <!-- 通知の種類に応じて表示内容を切り替え -->
+      <% case notification.action %>
+      <!-- フォロー通知の場合 -->
+      <% when 'follow' then %>
+        <strong><%= visitor.nickname %></strong>さんがあなたをフォローしました
+
+      <!-- 投稿がいいねされた通知の場合 -->
+      <% when 'cheer_goal' then %>
+        <%= link_to goal_path(notification.goal) do %>
+          <strong><%= visitor.nickname %></strong>さんが<strong><%= truncate(notification.goal.title, length: 10) %></strong>の目標を応援しました
+        <% end %>
+
+      <!-- コメントが投稿された通知の場合 -->
+      <% when 'comment' then %>
+        <!-- 自分自身の投稿へのコメントの場合 -->
+        <% if notification.goal.user_id == visited.id %>
+          <%= link_to goal_path(notification.post) do %>
+            <strong><%= visitor.nickname %></strong>さんが<strong><%= truncate(notification.goal.title, length: 10) %></strong>の目標にコメントしました
+            <% comment = Comment.find_by(id: notification.comment_id) %>
+            <div class="notification-comment">
+              <%= truncate(comment&.comment, length: 30) %>
+            </div>
+          <% end %>
+
+        <!-- 投稿者が異なり自身がコメントした投稿に他のユーザーがコメントした場合 -->
+        <% else %>
+          <span>
+            <%= link_to goal_path(notification.goal) do %>
+              <strong><%= visitor.nickname %></strong>さんが<strong><%= notification.goal.user.nickname + 'さんの投稿' %></strong>にコメントしました
+              <% comment = Comment.find_by(id: notification.comment_id) %>
+              <div class="notification-comment">
+                <%= truncate(comment&.comment, length: 30) %>
+              </div>
+            <% end %>
+          </span>
+        <% end %>
+      <% end %>
+
+    </div>
+    <div class="small text-muted text-right">
+      <%= time_ago_in_words(notification.created_at).upcase %>前
+    </div>
+  </div>
+<% end %>

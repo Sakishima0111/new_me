@@ -22,17 +22,37 @@ class User < ApplicationRecord
   has_many :rooms, through: :user_rooms
   has_many :group_users
   has_many :groups, through: :group_users
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy #自分からの通知
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy #相手からの通知
+  
+  
   def active_for_authentication?
     super && (is_active == true)
   end
+  
   def self.ransackable_attributes(auth_object = nil)
     ["introduction", "nickname"]
   end
+  
   def followed_by?(user)
     # 今自分(引数のuser)がフォローしようとしているユーザー(レシーバー)がフォローされているユーザー(つまりpassive)の中から、引数に渡されたユーザー(自分)がいるかどうかを調べる
     passive_relationships.find_by(following_id: user.id).present?
   end
+  
   def following?(other_user)
     self.followings.exists?(other_user.id)
+  end
+  # フォロー通知を作成するメソッド
+  def create_notification_follow!(current_user)
+    # すでにフォロー通知が存在するか検索
+    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: 'follow')
+    # フォロー通知が存在しない場合のみ、通知レコードを作成
+    if existing_notification.blank?
+      notification = current_user.active_notifications.build(
+        visited_id: self.id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
 end

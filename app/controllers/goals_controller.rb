@@ -17,7 +17,8 @@ class GoalsController < ApplicationController
   end
   
   def index
-    @goals = Goal.all
+    # 新しい投稿が上にくるように表示
+    @goals = Goal.where(status: Goal.statuses[:in_progress]).order(created_at: :desc)
   end 
   
   def edit

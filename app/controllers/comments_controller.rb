@@ -1,9 +1,12 @@
 class CommentsController < ApplicationController
   def create
-    goal = Goal.find(params[:goal_id])
+    @goal = Goal.find(params[:goal_id])
     @comment = current_user.comments.new(comment_params)
-    @comment.goal_id = goal.id
+    @comment.goal_id = @goal.id
     @comment.save
+    if current_user != @goal.user
+      @goal.create_notification_comment!(current_user, @comment.id)
+    end
     redirect_to request.referer
   end
 

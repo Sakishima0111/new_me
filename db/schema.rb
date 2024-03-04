@@ -118,6 +118,14 @@ ActiveRecord::Schema.define(version: 2024_02_28_122522) do
   end
 
   create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "goal_id"
+    t.integer "comment_id"
+    t.integer "cheer_id"
+    t.integer "relationship_id"
+    t.string "action", default: "", null: false
+    t.boolean "is_checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

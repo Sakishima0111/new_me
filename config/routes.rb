@@ -32,7 +32,11 @@ devise_for :users, skip: [:passwords], controllers: {
     resources :comments, only: [:create, :destroy]
   end
   resources :chats, only: [:show, :create, :destroy]
-
+  scope module: :public do
+    resources :notifications, only: [:index] do
+      post :update_checked, on: :collection
+    end
+  end
 
 #管理者側
 # URL /admin/sign_in ...
