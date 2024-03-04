@@ -25,9 +25,12 @@ class GoalsController < ApplicationController
   end
   
   def update
+    @goal = Goal.find(params[:id])
     if @goal.update(goal_params)
       redirect_to goal_path(@goal), notice: "You have updated book successfully."
     else
+      @goal = Goal.find(params[:id])
+      @goal.update(goal_params)
       render "edit"
     end
   end  

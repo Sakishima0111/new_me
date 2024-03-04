@@ -1,0 +1,18 @@
+<h1>Groups#show</h1>
+<p>Find me in app/views/groups/show.html.erb</p>
+<h1>グループ名：<%= @group.name %></h1>
+<h2>グループオーナー：<%= @group.owner.nickname %></h2>
+
+  <% if user_signed_in? %>
+    <% if @group.owner == current_user %>
+      <%= link_to "グループを編集する", edit_group_path(@group.id) %>
+      <%= link_to "グループを削除する", group_path(@group.id), method: :delete, data: {confirm: "本当にグループを消しますか？"} %>
+    <% elsif @group.group_users.exists?(user_id: current_user.id) %>
+     <%= link_to "脱退する",  group_group_user_path(@group), method: :delete %>
+   <% else %>
+     <%= link_to "参加する", group_group_user_path(@group), method: :post%>
+   <% end %>
+ <% end %>
+<p><strong>説明:</strong> <%= @group.description %></p>
+
+<%= link_to '一覧に戻る', groups_path %>

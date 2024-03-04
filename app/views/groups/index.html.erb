@@ -1,0 +1,11 @@
+<h1>Groups#index</h1>
+<p>Find me in app/views/groups/index.html.erb</p>
+<h1>グループ一覧</h1>
+<% if user_signed_in? %>
+<%= link_to '新しいグループを作成', new_group_path %>
+<% end %>
+<% @groups.each do |group| %>
+  <li>
+    <%= link_to group.name, group_path(group.id) %>
+  </li>
+<% end %>

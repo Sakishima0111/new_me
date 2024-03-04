@@ -1,8 +1,11 @@
 <nav class="navbar bg-body-tertiary fixed-top">
   <div class="container-fluid">
-      <%= link_to root_path do %>
-      <div class="navbar-brand"><img src="../../assets/newme.jpg" ></div>
-      <% end %>
+      <div class="navbar-brand">
+        <%= link_to root_path do %>
+        <img src="../../assets/newme.jpg" ></div>
+        <% end %>
+      <%= l Time.zone.now %>
+      
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,14 +24,33 @@
               <%= link_to "目標新規登録", new_goal_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
-              <%= link_to "目標一覧", goals_path, class: "nav-link active" %>
+              <%= link_to "タイムライン", goals_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
-              <%= link_to "フォロー一覧", follows_user_path(current_user.id), class: "nav-link active" %>
+              <%= link_to "フォロー", follows_user_path(current_user.id), class: "nav-link active" %>
             </li>
             <li class="nav-item">
-            <%= link_to "フォロワー一覧", followers_user_path(current_user.id), class: "nav-link active" %>
+            <%= link_to "フォロワー", followers_user_path(current_user.id), class: "nav-link active" %>
             </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              グループ
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <%= link_to "グループ作成", new_group_path, class: "nav-link active" %>
+              </li>
+              <li class="dropdown-item">
+                <%= link_to "グループ一覧", groups_path, class: "nav-link active" %>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li class="dropdown-item">
+                <%= link_to "管理しているグループ", new_goal_path, class: "nav-link active" %>
+              </li>
+            </ul>
+          </li>
             <li class="nav-item">
               <%= link_to "使い方", about_path, class: "nav-link active" %>
             </li>

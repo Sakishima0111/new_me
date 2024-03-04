@@ -20,6 +20,8 @@ class User < ApplicationRecord
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
   has_many :rooms, through: :user_rooms
+  has_many :group_users
+  has_many :groups, through: :group_users
   def active_for_authentication?
     super && (is_active == true)
   end

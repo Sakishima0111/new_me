@@ -2,7 +2,7 @@
 <p>Find me in app/views/goals/edit.html.erb</p>
  <h2>edit goal!</h2>
       <div class="mx-auto">
-        <%= form_with model: @goal, url: goals_path, method: :post do |f| %>
+        <%= form_with model: @goal do |f| %>
           <div class="form-group row">
             <%= f.label :title, '目標のタイトル', class: 'col-sm-3 col-form-label' %>
             <div class="col-sm-9">
