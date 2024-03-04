@@ -34,15 +34,48 @@
       <% end %>
   </div>
 <hr>
+<div class="container">
+      
+        <ul class="nav nav-underline nav-justified">
+          <li class="nav-item">
+            <a class="nav-link active text-light" data-toggle="tab" href="#in_progress">In progress</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" data-toggle="tab" href="#completed">completed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" data-toggle="tab" href="#not_started">untouched</a>
+          </li>
+        </ul>
+        <!--固定位置で右下に新規投稿のボタンを置けるようにする-->
+        <!--<%= link_to "New", new_goal_path, class: "btn btn-outline-primary ml-auto" %>-->
+      
 
-<div class="card-deck">
-  <% @goals.each do |goal| %>
-  <div class="card border-dark mb-3" style="max-width: 250px; min-width: 250px;">
-    <div class="card-header"><%= l goal.deadline %></div>
-    <div class="card-body">
-      <h5 class="card-title"><%=link_to goal.title, goal_path(goal.id) %></h5>
-      <p class="card-text"><%= goal.content %></p>
+      <div class="tab-content">
+        <div id="in_progress" class="tab-pane fade show active">
+          <div class="card-deck">
+          <% @in_progress_goals.each do |goal| %>
+            <%= render "goal", goal: goal %>
+          <% end %>
+          </div>
+        </div>
+
+        <div id="completed" class="tab-pane fade">
+          <div class="card-deck">
+          <% @completed_goals.each do |goal| %>
+            <%= render "goal", goal: goal %>
+          <% end %>
+          </div>
+        </div>
+
+        <div id="not_started" class="tab-pane fade">
+          <div class="card-deck">
+          <% @not_started_goals.each do |goal| %>
+            <%= render "goal", goal: goal %>
+          <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <% end %>
+
 </div>

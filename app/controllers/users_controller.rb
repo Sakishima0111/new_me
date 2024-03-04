@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @goals = @user.goals
+    @in_progress_goals = @user.goals.where(status: Goal.statuses[:in_progress])
+    @completed_goals = @user.goals.where(status: Goal.statuses[:completed])
+    @not_started_goals = @user.goals.where(status: Goal.statuses[:not_started])
   end
 
   def edit
