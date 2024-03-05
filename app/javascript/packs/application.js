@@ -16,7 +16,7 @@ import "../stylesheets/myapp.scss"
 import "script.js"
 
 Rails.start()
-Turbolinks.start()
+// Turbolinks.start()
 ActiveStorage.start()
 
 require("trix")

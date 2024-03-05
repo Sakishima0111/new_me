@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
 # ユーザーログイン
 devise_for :users, skip: [:passwords], controllers: {
   registrations: "user/registrations",
@@ -26,15 +27,15 @@ devise_for :users, skip: [:passwords], controllers: {
     resource :group_user, only: [:create, :destroy]
   end
   resources :cheers, only: [:index]
-  resources :categories, only: [:index, :show]
+  resources :categories, only: [:show]
   resources :goals, only: [:new, :edit, :show, :index, :create, :destroy, :update] do
     resource :cheers, only: [:create, :destroy, :index]
     resources :comments, only: [:create, :destroy]
   end
   resources :chats, only: [:show, :create, :destroy]
-  scope module: :public do
-    resources :notifications, only: [:index] do
-      post :update_checked, on: :collection
+  resources :notifications, only: [:index] do
+    collection do
+      post :update_checked
     end
   end
 
@@ -44,4 +45,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    resources :categories, only: [:index, :create, :edit, :update]
+  end
 end

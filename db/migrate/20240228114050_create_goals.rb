@@ -6,6 +6,7 @@ class CreateGoals < ActiveRecord::Migration[6.1]
       t.datetime :deadline, null: false
       t.string :reward, null: false
       t.integer :status, null: false, default: 1
+      t.integer :category_id
       t.timestamps
     end
   end

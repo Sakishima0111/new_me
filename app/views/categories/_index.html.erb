@@ -1,0 +1,15 @@
+<div class="dropdown">
+  <button class="btn btn-light rounded-pill dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    カテゴリ
+  </button>
+    <ul class="dropdown-menu">
+    <li class="dropdown-item">
+      <%= link_to "すべて", goals_path, class:"category-list active" %>
+    </li>
+    <% categories.each do |category| %>
+    <li class="dropdown-item">
+      <%= link_to category.name, category_path(category.id), class:"category-list active" %>
+    </li>
+    <% end %>
+    </ul>
+</div>

@@ -4,9 +4,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.goal_id = @goal.id
     @comment.save
-    if current_user != @goal.user
-      @goal.create_notification_comment!(current_user, @comment.id)
-    end
+    @goal.create_notification_comment!(current_user, @comment.id)
     redirect_to request.referer
   end
 

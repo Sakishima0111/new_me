@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2024_02_28_122522) do
     t.integer "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2024_02_28_122522) do
     t.datetime "deadline", null: false
     t.string "reward", null: false
     t.integer "status", default: 1, null: false
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

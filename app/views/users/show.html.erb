@@ -6,20 +6,21 @@
   </div>
 </div>
 
-<h2>Profile</h2>
+<h1 class="text-light text-center">Profile</h2><br>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 text-center">
       <% if @user.image.attached? %>
         <%= image_tag @user.image, size: "200x200" %>
       <% else %>
         <%= image_tag 'no_image', size: "200x200"  %>
       <% end %>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 text-light">
       <h3><%= @user.nickname %></h3>
       <%= @user.introduction %><br>
-      <%= link_to "プロフィール情報を編集", edit_user_path(current_user), class: "btn btn-primary"%>
+      <%= link_to "プロフィール情報を編集", edit_user_path(current_user), class: "btn btn-light rounded-pill"%>
     </div>
+    <div class="col-md-3 text-center">
       <% if current_user != @user %>
         <% if @user.followed_by?(current_user) %>
           <p><%=link_to "フォロー済み", user_relationships_path(@user.id), class: "btn btn-primary", method: :delete %></p>
@@ -28,28 +29,29 @@
         <% end %>
       <% end %>
       <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
-        <%= link_to chat_path(@user.id), class: "btn btn-light col-md-1" do %>
+        <%= link_to chat_path(@user.id), class: "btn btn-light" do %>
         <i class="fa-regular fa-envelope"></i>
         <% end %>
       <% end %>
+    </div>
   </div>
 <hr>
 <div class="container">
-      
+
         <ul class="nav nav-underline nav-justified">
           <li class="nav-item">
             <a class="nav-link active text-light" data-toggle="tab" href="#in_progress">In progress</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" data-toggle="tab" href="#completed">completed</a>
+            <a class="nav-link text-light" data-toggle="tab" href="#not_started">untouched</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" data-toggle="tab" href="#not_started">untouched</a>
+            <a class="nav-link text-light" data-toggle="tab" href="#completed">completed</a>
           </li>
         </ul>
         <!--固定位置で右下に新規投稿のボタンを置けるようにする-->
         <!--<%= link_to "New", new_goal_path, class: "btn btn-outline-primary ml-auto" %>-->
-      
+
 
       <div class="tab-content">
         <div id="in_progress" class="tab-pane fade show active">
@@ -59,18 +61,16 @@
           <% end %>
           </div>
         </div>
-
-        <div id="completed" class="tab-pane fade">
+        <div id="not_started" class="tab-pane fade">
           <div class="card-deck">
-          <% @completed_goals.each do |goal| %>
+          <% @not_started_goals.each do |goal| %>
             <%= render "goal", goal: goal %>
           <% end %>
           </div>
         </div>
-
-        <div id="not_started" class="tab-pane fade">
+        <div id="completed" class="tab-pane fade">
           <div class="card-deck">
-          <% @not_started_goals.each do |goal| %>
+          <% @completed_goals.each do |goal| %>
             <%= render "goal", goal: goal %>
           <% end %>
           </div>

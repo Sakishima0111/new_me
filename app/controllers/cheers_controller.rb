@@ -11,7 +11,7 @@ class CheersController < ApplicationController
   
   def destroy
     @goal = Goal.find(params[:goal_id])
-    @cheer = current_user.cheers.find_by(goal_id: goal.id)
+    @cheer = current_user.cheers.find_by(goal_id: @goal.id)
     @cheer.destroy
     redirect_to request.referer
   end

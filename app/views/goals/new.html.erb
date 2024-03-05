@@ -1,7 +1,9 @@
 <div class="container">
 
+    
+    <h1 class="text-center text-light">Setting new goal!</h2>
     <div class="card">
-    <h2 class="text-center">Setting new goal!</h2>
+      <div class="card-body">
       <div class="mx-auto">
         <%= form_with model: @goal, url: goals_path, method: :post do |f| %>
           <div class="form-group row">
@@ -10,9 +12,15 @@
               <%= f.text_area :title, class: 'form-control' %>
             </div>
           </div>
+          <div class="form-group row">
+            <%= f.label :category_id, 'カテゴリを選択', class: 'col-sm-3 col-form-label' %>
+            <div class="col-sm-9">
+              <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
+            </div>
+          </div>
           <!--インフォメーションボタンここから-->
           <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fa-regular fa-circle-question text-light"></i>
+            <i class="fa-regular fa-circle-question"></i>
           </button>
           <div class="collapse" id="collapseExample">
             <div class="card card-body">
@@ -43,15 +51,16 @@
           <div class="form-group row">
             <%= f.label :status, '進捗ステータス', class: 'col-sm-3 col-form-label' %>
             <div class="col-sm-9">
-              <%= f.select :status, Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]} %>
+              <%= f.select :status,  Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]} %>
             </div>
           </div>
 
           <div class="form-group row">
           <div class="col-sm-12 text-center">
-            <%= f.submit '目標を設定する！', class: 'btn btn-outline-secondary rounded-pill' %>
+            <%= f.submit '目標を設定する！', class: 'btn btn-secondary rounded-pill' %>
           </div>
           </div>
+        </div>
         <% end %>
       </div>
     </div>
