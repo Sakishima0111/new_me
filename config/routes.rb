@@ -38,6 +38,7 @@ devise_for :users, skip: [:passwords], controllers: {
       post :update_checked
     end
   end
+  resources :reports, only: [:new, :create]
 
 #管理者側
 # URL /admin/sign_in ...

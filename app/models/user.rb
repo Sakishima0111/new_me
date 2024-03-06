@@ -23,7 +23,8 @@ class User < ApplicationRecord
   has_many :groups, through: :group_users
   has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy #自分からの通知
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy #相手からの通知
-  
+  has_many :reporter, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
+  has_many :reported, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
   
   def active_for_authentication?
     super && (is_active == true)
