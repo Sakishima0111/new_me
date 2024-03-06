@@ -1,5 +1,4 @@
 class SearchesController < ApplicationController
-
   def search
     @q = User.ransack(params[:q])
     @item = @q.result(distinct: true)

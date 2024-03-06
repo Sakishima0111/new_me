@@ -5,17 +5,7 @@
 <% if @goals.present? %>
   <div class="card-deck">
     <% @goals.each do |goal| %>
-      <div class="card border-dark mb-3" style="max-width: 300px; min-width: 300px;">
-        <div class="card-header"><%= link_to goal.user.nickname, user_path(goal.user.id), data: {"turbolinks" => false} %></div>
-        <div class="card-body">
-          <h5 class="card-title"><%=link_to goal.title, goal_path(goal.id) %></h5>
-          <p class="card-text"><%= goal.content %><br>
-            <%= render "cheers/btn", goal: goal %>
-            <i class="fa-regular fa-message"></i> <%= goal.comments.count %>
-            <%= time_ago_in_words(goal.created_at) %>前
-          </p>
-        </div>
-      </div>
+    <%= render "users/goal", goal: goal %>
     <% end %>
   </div>
 <% else %>

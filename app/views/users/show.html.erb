@@ -1,3 +1,4 @@
+<!--ローディング部分-->
 <div id="loading">
   <div id="loading_box">
     <div class="loading-one animation_loading">
@@ -6,34 +7,48 @@
   </div>
 </div>
 
+<!--show画面-->
+<div class="row">
+  <div class="col-1"></div>
+    <div class="col-9">
 <h1 class="text-light text-center">Profile</h2><br>
   <div class="row">
+    <div class="col-md-1"></div>
     <div class="col-md-3 text-center">
-      <% if @user.image.attached? %>
-        <%= image_tag @user.image, size: "200x200" %>
-      <% else %>
-        <%= image_tag 'no_image', size: "200x200"  %>
-      <% end %>
+      <%= image_tag @user.get_profile_image, size: "200x200", style: 'border-radius: 50%' %>
     </div>
-    <div class="col-md-9 text-light">
-      <h3><%= @user.nickname %></h3>
+    <div class="col-md-1"></div>
+    
+    <div class="col-md-7 text-light">
+      <h3><%= @user.nickname %></h3><br>
       <%= @user.introduction %><br>
-      <%= link_to "プロフィール情報を編集", edit_user_path(current_user), class: "btn btn-light rounded-pill"%>
     </div>
-    <div class="col-md-3 text-center">
+  </div>
+  <div class="row"></div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-2 text-center">
       <% if current_user != @user %>
         <% if @user.followed_by?(current_user) %>
-          <p><%=link_to "フォロー済み", user_relationships_path(@user.id), class: "btn btn-primary", method: :delete %></p>
+          <p><%=link_to "フォロー済み", user_relationships_path(@user.id), class: "btn btn-outline-light rounded-pill", method: :delete %></p>
         <% else %>
           <p><%=link_to "フォローする", user_relationships_path(@user.id), class: "btn btn-success",method: :post %></p>
         <% end %>
       <% end %>
+    </div>
+    <div class="col-1">
       <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
-        <%= link_to chat_path(@user.id), class: "btn btn-light" do %>
+        <%= link_to chat_path(@user.id), class: "btn btn-light rounded-pill" do %>
         <i class="fa-regular fa-envelope"></i>
         <% end %>
       <% end %>
     </div>
+    <div class="col-1"></div>
+    <% if @user.id == current_user.id %>
+    <div class="col-7">
+      <%= link_to "プロフィール情報を編集", edit_user_path(current_user), class: "btn btn-light rounded-pill"%>
+    </div>
+    <% end %>
   </div>
 <hr>
 <div class="container">
@@ -77,5 +92,6 @@
         </div>
       </div>
     </div>
-
+    </div>
+  </div>
 </div>

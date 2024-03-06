@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :image
 
-
   #フォローする側のUserから見て、フォローされる側のUserを(中間テーブルを介して)集める。なので親はfollowing_id(フォローする側)
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
   # 中間テーブルを介して「follower」モデルのUser(フォローされた側)を集めることを「followings」と定義
@@ -55,4 +54,12 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+  def get_profile_image
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpeg')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+      image
+  end
+  
 end

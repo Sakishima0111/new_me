@@ -1,27 +1,35 @@
-    <div class="card">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h3 class="card-title"><%= @goal.title %></h3>
-          <h6 class="card-subtitle mb-2 text-body-secondary">limit: <%= l @goal.deadline %></h6>
-          <p class="card-text">
-            <%= @goal.content %><br>
-            <%= @goal.reward %><br>
-            <%= @goal.status_i18n %>
-          </p>
-          <%= render "cheers/btn", goal: @goal %>
-          <i class="fa-regular fa-message"></i> <%= @goal.comments.count %>
-          <%= time_ago_in_words(@goal.created_at) %>前
-          <%= link_to edit_goal_path(@goal.id), class: "btn btn-success rounded-pill" do %>
-          <i class="fa-solid fa-pen-to-square text-light"></i>
-          <% end %>
-          <%= link_to goal_path(@goal.id), class: "btn btn-secondary rounded-pill", method: :delete do %>
-          <i class="fa-solid fa-trash-can text-light"></i>
-          <% end %>
+<div class="row">
+  <div class="col-2"></div>
+    <div class="col-8">
+      <div class="card">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h3 class="card-title"><%= @goal.title %></h3>
+            <h6 class="card-subtitle mb-2 text-body-secondary">limit: <%= l @goal.deadline %></h6>
+            <p class="card-text">
+              <%= @goal.content %><br>
+              <%= @goal.reward %><br>
+              <%= @goal.status_i18n %>
+            </p>
+            <%= render "cheers/btn", goal: @goal %>
+            <i class="fa-regular fa-message"></i> <%= @goal.comments.count %>
+            <%= time_ago_in_words(@goal.created_at) %>前
+            
+            <% if @goal.user.id == current_user.id %>
+              <%= link_to edit_goal_path(@goal.id), class: "btn btn-success rounded-pill" do %>
+                <i class="fa-solid fa-pen-to-square text-light"></i>
+              <% end %>
+              <%= link_to goal_path(@goal.id), class: "btn btn-secondary rounded-pill", method: :delete do %>
+                <i class="fa-solid fa-trash-can text-light"></i>
+              <% end %>
+            <% end %>
+          </div>
         </div>
+        <div class="col-md-2"></div>
       </div>
-      <div class="col-md-2"></div>
+      
+      <%= render "comments/index", goal: @goal %>
+      <%= render "comments/form", goal: @goal, comment: @comment %>
     </div>
-    
-    <%= render "comments/index", goal: @goal %>
-    <%= render "comments/form", goal: @goal, comment: @comment %>
+</div> 
