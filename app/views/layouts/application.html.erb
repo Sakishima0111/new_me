@@ -22,6 +22,9 @@
       <div class="success-message"></div>
       <%= yield %>
     </div>
+      <%= link_to :back, class: "btn btn-light rounded-pill" do %>
+      <i class="fa-solid fa-chevron-left"></i>
+      <% end %>
     </main>
     <footer>
       <%= render 'layouts/footer' %>
