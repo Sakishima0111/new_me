@@ -1,0 +1,28 @@
+<h1 class="text-light text-center">通報一覧</h1>
+<div class="row">
+  
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <tr>
+            <th>通報No.</th>
+            <th>通報者</th>
+            <th>通報された人</th>
+            <th>通報内容</th>
+          </tr>
+          <tr>
+            <% @reports.each do |report| %>
+            <td><%= report.id %></td>
+            <td><%= report.reporter.nickname %></td>
+            <td><%= report.reported.nickname %></td>
+            <td><%= report.reason_i18n %></td>
+          </tr>
+          　<% end %>
+        </table>
+        <%= paginate @reports, theme: 'bootstrap-5', class: "paginations" %>
+      </div>
+    </div>
+  </div>
+</div>

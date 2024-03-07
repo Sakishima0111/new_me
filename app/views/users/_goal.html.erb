@@ -5,7 +5,7 @@
           <%= image_tag goal.user.get_profile_image, size: '30x30', style: 'border-radius: 50%' %>
         </div>
         <div class="col-5">
-          <%= goal.user.nickname%>
+          <%= link_to goal.user.nickname, user_path(goal.user.id) %>
         </div>
         <div class="col-5 text-right goal-status">
           <%= goal.status_i18n %>

@@ -5,7 +5,7 @@
     <div class="notification-box d-flex align-items-center">
       <div class="notification-icon">
         <%= link_to user_path(visitor), data: { turbolinks: false } do %>
-          <%= image_tag visitor.image, size: '40x40', class: 'rounded-circle mr-3' %>
+          <%= image_tag visitor.get_profile_image, size: '40x40', class: 'rounded-circle mr-3' %>
         <% end %>
       </div>
 
@@ -38,13 +38,13 @@
         <% else %>
           <span>
             <% if notification.goal %>
-            <%= link_to goal_path(notification.goal) do %>
-              <strong><%= visitor.nickname %></strong>さんが<strong><%= notification.goal.user.nickname + 'さんの投稿' %></strong>にコメントしました
-              <% comment = Comment.find_by(id: notification.comment_id) %>
-              <div class="notification-comment">
-                <%#= truncate(comment, length: 30) %>
-              </div>
-            <% end %>
+              <%= link_to goal_path(notification.goal) do %>
+                <strong><%= visitor.nickname %></strong>さんが<strong><%= notification.goal.user.nickname + 'さんの投稿' %></strong>にコメントしました
+                <% comment = Comment.find_by(id: notification.comment_id) %>
+                <div class="notification-comment">
+                  <%#= truncate(comment, length: 30) %>
+                </div>
+              <% end %>
             <% end %>
           </span>
         <% end %>

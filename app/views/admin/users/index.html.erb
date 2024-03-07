@@ -1,0 +1,28 @@
+<h1 class="text-light text-center">ユーザー一覧</h1>
+<div class="row">
+  
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <tr>
+            <th>ユーザーID</th>
+            <th>ニックネーム</th>
+            <th>メールアドレス</th>
+            <th>入退会ステータス</th>
+          </tr>
+          <tr>
+            <% @users.each do |user| %>
+            <td><%= user.id %></td>
+            <td><%= user.nickname %></td>
+            <td><%= user.email %></td>
+            <td><%= user.is_active %></td>
+          </tr>
+          　<% end %>
+        </table>
+        <%= paginate @users, theme: 'bootstrap-5', class: "paginations" %>
+      </div>
+    </div>
+  </div>
+</div>

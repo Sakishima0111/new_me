@@ -64,3 +64,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'image_processing', '~> 1.2'
   gem 'jquery-rails'
   gem 'simple_form'
+  gem 'kaminari', '~> 1.2', '>= 1.2.1'
+  gem 'bootstrap5-kaminari-views', '~> 0.0.1'

@@ -79,13 +79,13 @@
         <% elsif admin_signed_in? %>
            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <%= link_to "ユーザー", root_path, class: "nav-link active" %>
+              <%= link_to "ユーザー", admin_users_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
               <%= link_to "カテゴリ", admin_categories_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
-              <%= link_to "通報一覧", new_user_registration_path, class: "nav-link active" %>
+              <%= link_to "通報一覧", admin_reports_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link active" %>
@@ -113,7 +113,6 @@
 </nav>
 <div id="notifications-modal" class="modal">
   <div class="common-modal-content">
-
   </div>
 </div>
 
