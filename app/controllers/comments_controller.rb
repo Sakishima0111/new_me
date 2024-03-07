@@ -6,12 +6,13 @@ class CommentsController < ApplicationController
     @comment.goal_id = @goal.id
     @comment.save
     @goal.create_notification_comment!(current_user, @comment.id)
-    redirect_to request.referer
+    render "create"
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
+    render "destroy"
   end
 
   private

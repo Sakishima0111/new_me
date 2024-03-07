@@ -26,7 +26,7 @@
             <%= render "cheers/btn", goal: goal %>
           </div>
           <div class="col-3">
-            <i class="fa-regular fa-message"></i> <%= goal.comments.count %>
+            <i class="fa-regular fa-message"></i> <%= render "comments/counter", goal: goal, id: "comment_counter"  %>
           </div>
           <div class="col-6 text-right">
             <%= time_ago_in_words(goal.created_at) %>前

@@ -55,12 +55,23 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+  #画像の有無による表示設定の定義。'image.get_profile_image'のように使う
   def get_profile_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpeg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
       image
+  end
+  # ゲストログイン用記述
+  def self.guest
+    #探してなければ作成するメソッド
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      #パスワードを自動作成
+      user.password = SecureRandom.urlsafe_base64
+      user.nickname = "ゲスト"
+      user.introduction = "現在ゲストユーザーとしてログインしています。ゲストユーザーは一部の機能を制限されています。"
+    end
   end
   
 end

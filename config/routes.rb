@@ -7,6 +7,7 @@ devise_for :users, skip: [:passwords], controllers: {
 }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
+    post 'users/guest_sign_in' => "user/sessions#guest_sign_in"
   end
 
 #ユーザー側

@@ -9,14 +9,19 @@ class User::SessionsController < Devise::SessionsController
   # def new
   #   super
   # end
-  
+
   def after_sign_in_path_for(resource)
     user_path(current_user.id)
   end
   def after_sign_out_path_for(resource)
     root_path
   end
-
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    flash[:notice] = "ゲストユーザーとしてログインしました。"
+    redirect_to user_path(current_user.id)
+  end
 
   # POST /resource/sign_in
   # def create
@@ -51,8 +56,9 @@ class User::SessionsController < Devise::SessionsController
       flash[:notice] = "該当するユーザーが見つかりません"
     end
   end
-  
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
+
 end

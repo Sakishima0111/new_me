@@ -17,7 +17,7 @@
         </div>
         <div class="col-2">
           <% if comment.user == current_user %>
-            <%= link_to "削除", goal_comment_path(goal, comment), method: :delete, class: "btn btn-sm btn-danger float-end" %>
+            <%= link_to "削除", goal_comment_path(goal, comment), method: :delete, class: "btn btn-sm btn-danger float-end", remote: true %>
           <% end %>
         </div>
         <%= time_ago_in_words(comment.created_at) %>前

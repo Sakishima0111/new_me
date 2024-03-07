@@ -13,7 +13,7 @@
               <%= @goal.status_i18n %>
             </p>
             <%= render "cheers/btn", goal: @goal %>
-            <i class="fa-regular fa-message"></i> <%= @goal.comments.count %>
+            <i class="fa-regular fa-message"></i> <%= render "comments/counter", goal: @goal, id: "comment_counter" %>
             <%= time_ago_in_words(@goal.created_at) %>前
             
             <% if @goal.user.id == current_user.id %>
@@ -29,7 +29,7 @@
         <div class="col-md-2"></div>
       </div>
       
-      <%= render "comments/index", goal: @goal %>
-      <%= render "comments/form", goal: @goal, comment: @comment %>
+      <%= render "comments/index", goal: @goal, id: "comment_index"  %>
+      <%= render "comments/form", goal: @goal, comment: @comment ,id: "comment_textarea" %>
     </div>
 </div> 
