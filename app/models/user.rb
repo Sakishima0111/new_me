@@ -25,20 +25,21 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy #相手からの通知
   has_many :reporter, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
   has_many :reported, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
-  
+  has_many :group_posts
+
   def active_for_authentication?
     super && (is_active == true)
   end
-  
+
   def self.ransackable_attributes(auth_object = nil)
     ["introduction", "nickname"]
   end
-  
+
   def followed_by?(user)
     # 今自分(引数のuser)がフォローしようとしているユーザー(レシーバー)がフォローされているユーザー(つまりpassive)の中から、引数に渡されたユーザー(自分)がいるかどうかを調べる
     passive_relationships.find_by(following_id: user.id).present?
   end
-  
+
   def following?(other_user)
     self.followings.exists?(other_user.id)
   end
@@ -73,5 +74,5 @@ class User < ApplicationRecord
       user.introduction = "現在ゲストユーザーとしてログインしています。ゲストユーザーは一部の機能を制限されています。"
     end
   end
-  
+
 end

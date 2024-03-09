@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-2"></div>
   <div class="col-8">
-    <%= form_with model: [goal, comment], remote: true do |f| %>
-      <%= f.text_area :body, rows:'5', placeholder: "応援メッセージを送ろう！", class: "w-100" %>
+    <%= form_with model: [goal, comment], local: false do |f| %>
+      <%= f.text_area :body, rows:'5', placeholder: "応援メッセージを送ろう！", class: "w-100", id: "comment_textarea" %>
       <%= button_tag type: "submit", class: "btn btn-primary" do %>
       <i class="fa-solid fa-paper-plane text-light"></i>
       <% end %>

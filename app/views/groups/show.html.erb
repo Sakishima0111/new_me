@@ -14,3 +14,6 @@
 <p><strong>説明:</strong> <%= @group.description %></p>
 
 <%= link_to '一覧に戻る', groups_path %>
+
+<%= render partial: "group_posts/form", locals: { group_post: @group_post, group: @group } %>
+<%= render "group_posts/index", groupposts: @groupposts %>

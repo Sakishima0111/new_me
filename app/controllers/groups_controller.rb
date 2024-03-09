@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
  before_action :authenticate_user!, except: [:index, :show]
- before_action :owner?, only: [:edit, :update, :destroy]  
+ before_action :owner?, only: [:edit, :update, :destroy]
 
   def new
     @group = Group.new
@@ -22,12 +22,14 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @groupposts = GroupPost.where(group_id: @group.id).all
+    @group_post = GroupPost.new
   end
 
   def edit
     @group = Group.find(params[:id])
   end
-  
+
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
@@ -36,17 +38,20 @@ class GroupsController < ApplicationController
       render :edit
     end
   end
-    
+
   def destroy
     group = Group.find(params[:id])
     group.destroy
     redirect_to root_path
   end
-  
+
   private
 
   def group_params
     params.require(:group).permit(:name, :description)
+  end
+  def group_post_params
+    params.require(:group_post).permit(:content)
   end
   def owner?
    group = Group.find(params[:id])

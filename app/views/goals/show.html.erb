@@ -13,9 +13,9 @@
               <%= @goal.status_i18n %>
             </p>
             <%= render "cheers/btn", goal: @goal %>
-            <i class="fa-regular fa-message"></i> <%= render "comments/counter", goal: @goal, id: "comment_counter" %>
+            <i class="fa-regular fa-message"></i> <div id="comment_counter"><%= render "comments/counter", goal: @goal %></div>
             <%= time_ago_in_words(@goal.created_at) %>前
-            
+
             <% if @goal.user.id == current_user.id %>
               <%= link_to edit_goal_path(@goal.id), class: "btn btn-success rounded-pill" do %>
                 <i class="fa-solid fa-pen-to-square text-light"></i>
@@ -28,8 +28,9 @@
         </div>
         <div class="col-md-2"></div>
       </div>
-      
-      <%= render "comments/index", goal: @goal, id: "comment_index"  %>
+      <div id="comment_index">
+        <%= render "comments/index", comments: @comments %>
+      </div>
       <%= render "comments/form", goal: @goal, comment: @comment ,id: "comment_textarea" %>
     </div>
-</div> 
+</div>

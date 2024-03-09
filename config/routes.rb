@@ -27,6 +27,7 @@ devise_for :users, skip: [:passwords], controllers: {
   resources :groups do
     resource :group_user, only: [:create, :destroy]
   end
+  resource :group_post, only: [:create]
   resources :cheers, only: [:index]
   resources :categories, only: [:show]
   resources :goals, only: [:new, :edit, :show, :index, :create, :destroy, :update] do
