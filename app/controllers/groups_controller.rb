@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @groupposts = GroupPost.where(group_id: @group.id).all
+    @groupposts = GroupPost.where(group_id: @group.id).all.order(created_at: :desc)
     @group_post = GroupPost.new
   end
 

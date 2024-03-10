@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_many :reported, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
   has_many :group_posts
 
+  validate :guest_user_cannot_update, on: :update
   def active_for_authentication?
     super && (is_active == true)
   end
@@ -72,6 +73,11 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.nickname = "ゲスト"
       user.introduction = "現在ゲストユーザーとしてログインしています。ゲストユーザーは一部の機能を制限されています。"
+    end
+  end
+  def guest_user_cannot_update
+    if @user.email == 'guest@example.com'
+      errors.add(:base, "ゲストユーザーはプロフィール編集を制限されています")
     end
   end
 
