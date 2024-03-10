@@ -6,9 +6,9 @@
 
           <div class="card-body">
             <!--成功時フラッシュメッセージ-->
-            <div class="alert alert-info" role="alert">
+            <!--<div class="alert alert-info" role="alert">-->
               <%= flash[:notice] %>
-            </div>
+            <!--</div>-->
             <div class="row">
               <div class="col-10">
                 <h3 class="card-title"><%= @goal.title %></h3>
@@ -19,7 +19,7 @@
                     <%= f.select :status, Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]} %>
                       <%= button_tag type: :submit, class: "btn btn-primary rounded-pill btn-sm" do %>
                         <i class="fa-solid fa-check text-light"></i>
-                      <% end %>  
+                      <% end %>
                   <% end %>
                 </span>
               </div>
@@ -76,7 +76,7 @@
     <!--ここまで-->
             <div class="row">
               <div class="col-1">
-                <div  id="#cheer_btn_<%= @goal.id %>">
+                <div  id="cheer_btn_<%= @goal.id %>">
                   <%= render "cheers/btn", goal: @goal %>
                 </div>
               </div>

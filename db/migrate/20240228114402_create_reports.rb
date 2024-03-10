@@ -1,6 +1,6 @@
 class CreateReports < ActiveRecord::Migration[6.1]
   def change
-    create_table :notifications do |t|
+    create_table :reports do |t|
     t.integer :reporter_id, null: false
     t.integer :reported_id, null: false
     t.integer :content_id, null: false
