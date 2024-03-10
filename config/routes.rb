@@ -31,6 +31,8 @@ devise_for :users, skip: [:passwords], controllers: {
   resources :cheers, only: [:index]
   resources :categories, only: [:show]
   resources :goals, only: [:new, :edit, :show, :index, :create, :destroy, :update] do
+  patch 'goal/lookback_add' => "goals#lookback_add"
+  patch 'goal/status_update' => "goals#status_update"
     resource :cheers, only: [:create, :destroy, :index]
     resources :comments, only: [:create, :destroy]
   end

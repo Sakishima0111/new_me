@@ -1,11 +1,11 @@
 <% if goal.cheered_by?(current_user) %>
   <%= link_to goal_cheers_path(goal), method: :delete, remote: true do %>
     <i class="fa-solid fa-hands-clapping" aria-hidden="true" style="color: orange;"></i>
-    <%= goal.cheers.count %> 
+    <%= goal.cheers.count %>
   <% end %>
 <% else %>
   <%= link_to goal_cheers_path(goal), method: :post, remote: true do %>
     <i class="fa-solid fa-hands-clapping" aria-hidden="true"></i>
-    <%= goal.cheers.count %> 
+    <%= goal.cheers.count %>
   <% end %>
 <% end %>

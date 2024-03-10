@@ -3,34 +3,109 @@
     <div class="col-8">
       <div class="card">
         <div class="col-md-2"></div>
-        <div class="col-md-8">
+
           <div class="card-body">
-            <h3 class="card-title"><%= @goal.title %></h3>
+            <!--成功時フラッシュメッセージ-->
+            <div class="alert alert-info" role="alert">
+              <%= flash[:notice] %>
+            </div>
+            <div class="row">
+              <div class="col-10">
+                <h3 class="card-title"><%= @goal.title %></h3>
+              </div>
+              <div class="col-2">
+                <span class="<%= @goal.status %>.to_s">
+                  <%= form_with model: @goal, url: goal_goal_status_update_path(@goal.id), method: :patch do |f| %>
+                    <%= f.select :status, Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]} %>
+                      <%= button_tag type: :submit, class: "btn btn-primary rounded-pill btn-sm" do %>
+                        <i class="fa-solid fa-check text-light"></i>
+                      <% end %>  
+                  <% end %>
+                </span>
+              </div>
+            </div>
             <h6 class="card-subtitle mb-2 text-body-secondary">limit: <%= l @goal.deadline %></h6>
             <p class="card-text">
               <%= @goal.content %><br>
               <%= @goal.reward %><br>
-              <%= @goal.status_i18n %>
             </p>
-            <%= render "cheers/btn", goal: @goal %>
-            <i class="fa-regular fa-message"></i> <div id="comment_counter"><%= render "comments/counter", goal: @goal %></div>
-            <%= time_ago_in_words(@goal.created_at) %>前
-
-            <% if @goal.user.id == current_user.id %>
-              <%= link_to edit_goal_path(@goal.id), class: "btn btn-success rounded-pill" do %>
-                <i class="fa-solid fa-pen-to-square text-light"></i>
-              <% end %>
-              <%= link_to goal_path(@goal.id), class: "btn btn-secondary rounded-pill", method: :delete do %>
-                <i class="fa-solid fa-trash-can text-light"></i>
-              <% end %>
+    <!--振り返り機能条件ここから-->
+            <% if @goal.lookback == nil && @goal.status == "completed" %>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        目標の振り返りをする
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+                        <%= form_with model: @goal, url: goal_goal_lookback_add_path(@goal.id), method: :patch do |f| %>
+                        <div class="form-group row">
+                        <%= f.label :lookback, '目標の振り返り', class: 'col-sm-3 col-form-label' %>
+                        <div class="col-sm-9">
+                          <%= f.text_area :lookback, class: 'form-control' %>
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                        <div class="col-sm-12 text-center ">
+                          <%= f.submit '振り返りを追加', class: 'btn btn-secondary rounded-pill' %>
+                          </div>
+                        </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            <% elsif @goal.lookback != nil && @goal.status == "completed" %>
+            <!--振り返りここから-->
+              <div class="accordion accordion-flush" id="accordionFlushExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        目標の振り返りをみる
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body"><%= @goal.lookback %></div>
+                    </div>
+                  </div>
+              </div>
+              <% else %>
             <% end %>
-          </div>
-        </div>
+    <!--ここまで-->
+            <div class="row">
+              <div class="col-1">
+                <div  id="#cheer_btn_<%= @goal.id %>">
+                  <%= render "cheers/btn", goal: @goal %>
+                </div>
+              </div>
+              <div class="col-1">
+                <i class="fa-regular fa-message"></i><div id="comment_counter"><%= render "comments/counter", goal: @goal %></div>
+              </div>
+              <div class="col-2">
+                <%= time_ago_in_words(@goal.created_at) %>前
+              </div>
+              <div class="col-8">
+                <div class="text-right">
+                <% if @goal.user.id == current_user.id %>
+                  <%= link_to edit_goal_path(@goal.id), class: "btn btn-success rounded-pill" do %>
+                    <i class="fa-solid fa-pen-to-square text-light"></i>
+                  <% end %>
+                  <%= link_to goal_path(@goal.id), class: "btn btn-secondary rounded-pill", method: :delete do %>
+                    <i class="fa-solid fa-trash-can text-light"></i>
+                  <% end %>
+                <% end %>
+                </div>
+              </div>
+            </div>
+
         <div class="col-md-2"></div>
       </div>
+    </div>
+    <!--コメントの非同期化-->
       <div id="comment_index">
         <%= render "comments/index", comments: @comments %>
       </div>
-      <%= render "comments/form", goal: @goal, comment: @comment ,id: "comment_textarea" %>
-    </div>
+      <%= render "comments/form", goal: @goal, comment: @comment %>
 </div>

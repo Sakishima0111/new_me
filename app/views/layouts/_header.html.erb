@@ -90,10 +90,10 @@
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link active" %>
             </li>
-            <div id="notification">
-            <% if current_user.notification.present ? %>
-              <%= curernt_user.notificaitons.each do %>              
-            </div>
+            <!--<div id="notification">-->
+            <!--<%# if current_user.notification.present ? %>-->
+            <!--  <%#= curernt_user.notificaitons.each do %>              -->
+            <!--</div>-->
 
           </ul>
         <% else %>
@@ -131,33 +131,11 @@
         url: '<%= update_checked_notifications_path %>',
         type: 'POST',
         success: function() {
-          // $('.n-circle').removeClass('orange');
-          // $('#notifications-link').html('<i class="far fa-bell fa-lg" style="font-size: 1.5em;"></i>');
+          $('.n-circle').removeClass('orange');
+          $('#notifications-link').html('<i class="far fa-bell fa-lg" style="font-size: 1.5em;"></i>');
 
-          // 通知モーダルを表示する処理
-          // $.ajax({
-          //   url: '<%#= notifications_path(@user) %>',
-          //   type: 'GET',
-          //   success: function(response) {
-          //     $('#notifications-modal .common-modal-content').html(response);
-          //     $('#notifications-modal').addClass('fade-in').show();
-          //   }
-          // });
         }
       });
     });
 
-  // モーダル内のクリックイベントを停止
-  $('#notifications-modal .modal-content').on('click', function(event) {
-    event.stopPropagation(); // イベントの伝播を停止
-  });
-
-  // モーダル外（背景）をクリックしたときにモーダルを閉じる
-  $('#notifications-modal').on('click', function() {
-    $(this).addClass('fade-out');
-    setTimeout(() => {
-      $(this).hide().removeClass('fade-out');
-    }, 300);
-  });
-});
 </script>

@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2024_03_09_083015) do
     t.string "reward", null: false
     t.integer "status", default: 1, null: false
     t.integer "category_id"
+    t.text "lookback"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

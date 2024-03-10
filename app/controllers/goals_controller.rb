@@ -30,7 +30,7 @@ class GoalsController < ApplicationController
   def update
     @goal = Goal.find(params[:id])
     if @goal.update(goal_params)
-      redirect_to goal_path(@goal), notice: "You have updated book successfully."
+      redirect_to goal_path(@goal), notice: "目標を修正しました"
     else
       @goal = Goal.find(params[:id])
       @goal.update(goal_params)
@@ -43,11 +43,29 @@ class GoalsController < ApplicationController
     goal.destroy
     redirect_to user_path(current_user.id)
   end
+  # 目標の振り返りを追加するアクション。edit,updateと同じ役割。
+  def lookback_add
+    @goal = Goal.find(params[:goal_id])
+    if @goal.update(goal_params)
+      redirect_to goal_path(@goal), notice: "目標の振り返りが完了しました。"
+    else
+      render "show"
+    end
+  end
+  # ステータスを詳細ページで修正
+  def status_update
+    @goal = Goal.find(params[:goal_id])
+    if @goal.update(goal_params)
+      redirect_to goal_path(@goal), notice: "ステータスの変更が完了しました。"
+    else
+      render "show"
+    end
+  end
 
   private
 
   def goal_params
-    params.require(:goal).permit(:title, :content, :deadline, :reward, :status, :category_id)
+    params.require(:goal).permit(:title, :content, :deadline, :reward, :status, :category_id, :lookback)
   end
   def is_matching_login_user
       goal = Goal.find(params[:id])

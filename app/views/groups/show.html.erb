@@ -15,5 +15,9 @@
 
 <%= link_to '一覧に戻る', groups_path %>
 
-<%= render partial: "group_posts/form", locals: { group_post: @group_post, group: @group } %>
-<%= render "group_posts/index", groupposts: @groupposts %>
+<% if @group.users.include?(current_user) %>
+  <%= render partial: "group_posts/form", locals: { group_post: @group_post, group: @group } %>
+  <%= render "group_posts/index", groupposts: @groupposts %>
+<% else %>
+
+<% end %>
