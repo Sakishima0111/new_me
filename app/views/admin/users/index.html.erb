@@ -1,6 +1,6 @@
 <h1 class="text-light text-center">ユーザー一覧</h1>
 <div class="row">
-  
+
   <div class="col-2"></div>
   <div class="col-8">
     <div class="card">
@@ -17,7 +17,8 @@
             <td><%= user.id %></td>
             <td><%= user.nickname %></td>
             <td><%= user.email %></td>
-            <td><%= user.is_active %></td>
+            <td>
+              <%= user.status_text %></td>
           </tr>
           　<% end %>
         </table>

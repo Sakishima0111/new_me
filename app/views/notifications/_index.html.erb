@@ -1,13 +1,23 @@
-<% notifications = unchecked_notifications.where.not(visitor_id: current_user.id) %>
+<%
+    @notices = current_user.passive_notifications.order(created_at: :desc)
+    @unchecked_notifications = @notices.where(is_checked: false)
 
+    # 確認済みの通知を取得
+    @checked_notifications = @notices.where(is_checked: true).limit(20)
+
+    # 通知を確認済みに更新
+    current_user.passive_notifications.update_all(is_checked: true)
+%>
+<% notifications = @unchecked_notifications.where.not(visitor_id: current_user.id) %>
 <% if (@unchecked_notifications.present? && @unchecked_notifications.any?) || (@checked_notifications.present? && @checked_notifications.any?) %>
   <% if @unchecked_notifications.present? %>
-    <%= render "notification", notifications: @unchecked_notifications %>
+    <%= render "notifications/notification", notifications: @unchecked_notifications %>
   <% end %>
 
   <% if @checked_notifications.present? %>
-    <%= render "notification", notifications: @checked_notifications %>
+    <%= render "notifications/notification", notifications: @checked_notifications %>
   <% end %>
 <% else %>
   <p>通知はありません</p>
 <% end %>
+

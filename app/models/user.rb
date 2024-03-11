@@ -31,7 +31,13 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (is_active == true)
   end
-
+  def status_text
+    if is_active == true
+      "有効"
+    else
+      "退会済み"
+    end
+  end
   def self.ransackable_attributes(auth_object = nil)
     ["introduction", "nickname"]
   end

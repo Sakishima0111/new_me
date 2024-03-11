@@ -1,16 +1,19 @@
+Admin.destroy_all
 Admin.create!(
    email: 'admin@admin',
    password: 'testtest'
 )
 User.create!(
    email: 'cat@cat',
-   name: 'ネコ',
+   nickname: 'ネコ',
    introduction: 'にゃー',
+   password: "catcat"
 )
 User.create!(
    email: 'dog@dog',
-   name: 'いぬ',
+   nickname: 'いぬ',
    introduction: 'ワン！',
+   password: "dogdog"
 )
 
 

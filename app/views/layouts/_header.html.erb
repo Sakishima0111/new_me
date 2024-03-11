@@ -10,24 +10,9 @@
       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#headerModal">
         <i class="fa-regular fa-bell rounded-pill"></i>
       </button>
-      
+
       <!-- Modal -->
-      <div class="modal fade" id="headerModal" tabindex="-1" aria-labelledby="headerModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="headerModalLabel">通知一覧</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            　<%= render 'notifications/index' %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">閉じる</button>
-            </div>
-          </div>
-        </div>
-      </div>
+
     <% end %>
     <!--モーダルここまで-->
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -119,6 +104,26 @@
     </div>
   </div>
 </nav>
+
+     <div class="modal fade" id="headerModal" tabindex="-1" aria-labelledby="headerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="headerModalLabel">通知一覧</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <% if user_signed_in? %>
+            　  <%= render 'notifications/index' %>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
