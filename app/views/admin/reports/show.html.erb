@@ -1,2 +1,40 @@
-<h1>Admin::Reports#show</h1>
-<p>Find me in app/views/admin/reports/show.html.erb</p>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <h1 class="page-title text-light">通報詳細</h3>
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>通報ID</td>
+              <td><%= link_to @report.id %></td>
+            </tr>
+            <tr>
+              <td>会員名</td>
+              <td><%= link_to @report.reported.nickname, edit_admin_user_path(@report.reported.id) %></td>
+            </tr>
+            <tr>
+              <td>理由</td>
+              <td><%= @report.reason_i18n %></td>
+            </tr>
+            <tr>
+              <td>通報者</td>
+              <td><%= @report.reporter.nickname %></td>
+            </tr>
+            <tr>
+              <td>対応ステータス</td>
+              <td>
+                <%= @report.status_i18n %>
+                <%= form_with model:@report, url:admin_report_path(@report), method: :patch, local: true do |f| %>
+                  <%= f.select :status, Report.statuses.keys.map { |k| [t("enums.report.status.#{k}"), k] } %>
+                  <%= f.submit '更新' %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

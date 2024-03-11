@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 2024_03_09_083015) do
     t.integer "content_id", null: false
     t.string "content_type", null: false
     t.integer "reason", null: false
-    t.boolean "is_checked", default: false, null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -6,4 +6,8 @@
   </p>
 
   <%= link_to "退会しない", user_path(current_user.id), :class => "btn btn-primary ms-3", data: {"turbolinks" => false} %>
-  <%= link_to "退会する", users_withdraw_path, method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に退会しますか？"}  %>
+  <% if @user.email == 'guest@example.com'%>
+    <p class="text-light">ゲストユーザーは退会できません</p>
+  <% else %>
+    <%= link_to "退会する", users_withdraw_path, method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に退会しますか？"}  %>
+  <% end %>

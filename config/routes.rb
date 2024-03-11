@@ -53,6 +53,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   namespace :admin do
     resources :categories, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :edit, :update,]
-    resources :reports, only: [:index, :show]
+    resources :reports, only: [:index, :show, :update]
   end
 end

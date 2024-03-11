@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   def index
     @user = current_user
     @notices = current_user.passive_notifications.order(created_at: :desc)
-    @unchecked_notifications = @notices.where(is_checked: false)
+    @unchecked_notifications = @notices.where(is_checked: false)if @notices.present?
 
     # 確認済みの通知を取得
     @checked_notifications = @notices.where(is_checked: true).limit(20)

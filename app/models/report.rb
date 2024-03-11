@@ -8,7 +8,7 @@ class Report < ApplicationRecord
   
   # 通報対象のコンテンツを示す多様性（Polymorphic）関連付け
   belongs_to :content, polymorphic: true
-
+  
   # 通報理由の列挙型（Enum）
   enum reason: {
     malicious_expression: 0,      # 悪意のある表現
@@ -18,5 +18,5 @@ class Report < ApplicationRecord
     spam: 4,                      # スパム
     other: 5                      # その他
   }
-  
+  enum status: { waiting: 0, keep: 1, finish: 2 }
 end

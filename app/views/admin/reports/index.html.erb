@@ -12,9 +12,9 @@
             <th>通報された人</th>
             <th>通報内容</th>
           </tr>
-          <tr>
             <% @reports.each do |report| %>
-            <td><%= report.id %></td>
+          <tr>
+            <td><%= link_to report.id, admin_report_path(report) %></td>
             <td><%= report.reporter.nickname %></td>
             <td><%= report.reported.nickname %></td>
             <td><%= report.reason_i18n %></td>

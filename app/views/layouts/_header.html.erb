@@ -5,24 +5,31 @@
         <img src="../../assets/newme.jpg" ></div>
         <% end %>
       <%= l Time.zone.now %>
-
     <% if user_signed_in? %>
-      <div class="mypage-nav d-flex align-items-center">
-        <div class="bell-container mr-3">
-          <a href="javascript:void(0)" id="notifications-link">
-            <% if unchecked_notifications.any? %>
-              <span class="fa-stack" style="vertical-align: middle;">
-                <i class="far fa-bell fa-lg fa-stack-1x" style="font-size: 1.5em;"></i>
-                  <i class="fas fa-circle n-circle fa-stack-1x">
-                    <span class="notification-count"><%= unchecked_notifications.count %></span>
-                  </i>
-              </span>
-            <% else %>
-              <i class="far fa-bell fa-lg" style="font-size: 1.5em;"></i>
-            <% end %>
-          </a>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#headerModal">
+        <i class="fa-regular fa-bell rounded-pill"></i>
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="headerModal" tabindex="-1" aria-labelledby="headerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="headerModalLabel">通知一覧</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            　<%= render 'notifications/index' %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">閉じる</button>
+            </div>
+          </div>
         </div>
-      <% end %>
+      </div>
+    <% end %>
+    <!--モーダルここまで-->
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -90,10 +97,6 @@
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link active" %>
             </li>
-            <!--<div id="notification">-->
-            <!--<%# if current_user.notification.present ? %>-->
-            <!--  <%#= curernt_user.notificaitons.each do %>              -->
-            <!--</div>-->
 
           </ul>
         <% else %>
@@ -116,26 +119,6 @@
     </div>
   </div>
 </nav>
-<div id="notifications-modal" class="modal">
-  <div class="common-modal-content">
-  </div>
-</div>
 
-<script>
-  $(document).ready(function() {
-   
-    $('#notifications-link').click(function() {
-    
-      // 通知を確認済みに更新するアクションを呼び出す
-      $.ajax({
-        url: '<%= update_checked_notifications_path %>',
-        type: 'POST',
-        success: function() {
-          $('.n-circle').removeClass('orange');
-          $('#notifications-link').html('<i class="far fa-bell fa-lg" style="font-size: 1.5em;"></i>');
 
-        }
-      });
-    });
 
-</script>

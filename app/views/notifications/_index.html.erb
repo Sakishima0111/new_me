@@ -1,0 +1,13 @@
+<% notifications = unchecked_notifications.where.not(visitor_id: current_user.id) %>
+
+<% if (@unchecked_notifications.present? && @unchecked_notifications.any?) || (@checked_notifications.present? && @checked_notifications.any?) %>
+  <% if @unchecked_notifications.present? %>
+    <%= render "notification", notifications: @unchecked_notifications %>
+  <% end %>
+
+  <% if @checked_notifications.present? %>
+    <%= render "notification", notifications: @checked_notifications %>
+  <% end %>
+<% else %>
+  <p>通知はありません</p>
+<% end %>
