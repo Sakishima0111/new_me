@@ -72,4 +72,6 @@ ja:
       group:
         name: "グループ名"
         description: "グループの説明"
+      category:
+        name: "カテゴリ名"
 

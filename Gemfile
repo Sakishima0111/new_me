@@ -57,9 +57,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   #デバイス
   gem 'devise'
   #
-  gem 'ransack'
   gem 'enum_help'
-  # 一応入れてみたが作動せず
   gem 'actiontext'
   gem 'image_processing', '~> 1.2'
   gem 'jquery-rails'
