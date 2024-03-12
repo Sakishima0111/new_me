@@ -9,6 +9,7 @@
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#headerModal">
         <i class="fa-regular fa-bell rounded-pill"></i>
+        <span class="badge badge-secondary"><%= current_user.passive_notifications.where(is_checked: false).count %></span>
       </button>
     <% end %>
     <!--モーダルここまで-->
