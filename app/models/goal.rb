@@ -5,6 +5,13 @@ class Goal < ApplicationRecord
   belongs_to :user
   belongs_to :category, optional: true
 
+  #バリデーション
+  validates :title, presence: true
+  validates :content, presence: true
+  validates :deadline, presence: true
+  validates :reward, presence: true
+  validates :status, presence: true
+
   # action textの使用
   has_rich_text :content
 

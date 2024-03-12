@@ -60,3 +60,16 @@ ja:
       over_x_years:
         one:   1年以上
         other: "%{count}年以上"
+  activerecord:
+    attributes:
+      goal:
+        title: "目標のタイトル"
+        content: "目標を達成するための方法"
+        deadline: "期限"
+        reward: "達成後のご褒美"
+      user:
+        nickname: "ニックネーム"
+      group:
+        name: "グループ名"
+        description: "グループの説明"
+

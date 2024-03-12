@@ -1,69 +1,78 @@
 <div class="row">
   <div class="col-2"></div>
-    <div class="col-8">
+  <div class="col-8">
     <h1 class="text-center text-light">Setting new goal!</h2>
     <div class="card">
       <div class="card-body">
-      <div class="mx-auto">
-        <%= form_with model: @goal, url: goals_path, method: :post do |f| %>
-          <div class="form-group row">
-            <%= f.label :title, '目標のタイトル', class: 'col-sm-3 col-form-label' %>
-            <div class="col-sm-9">
-              <%= f.text_area :title, class: 'form-control' %>
-            </div>
+        <div class="mx-auto">
+            <% if @goal.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <strong>以下の項目は必須です</strong>
+                <ul>
+                <% @goal.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <%= form_with model: @goal, url: goals_path, method: :post do |f| %>
+              <div class="form-group row">
+                <%= f.label :title, '目標のタイトル', class: 'col-sm-3 col-form-label' %>
+                <div class="col-sm-9">
+                  <%= f.text_area :title, class: 'shadow-sm form-control' %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= f.label :category_id, 'カテゴリを選択', class: 'col-sm-3 col-form-label' %>
+                <div class="col-sm-9">
+                  <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' }, class: 'form-control shadow-sm' %>
+                </div>
+              </div>
+              <!--インフォメーションボタンここから-->
+              <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-regular fa-circle-question"></i>
+              </button>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  目標を達成するための方法を具体的に書き出してみましょう。
+                  箇条書きやリストの作成、参考リンクなども貼ることができます。
+                </div>
+              </div>
+              <!--ここまで-->
+               <div class="form-group row">
+                  <%= f.label :content, '目標達成するための方法', class: 'col-sm-3 col-form-label', for: 'goal_way'  %>
+                <div class="col-sm-9">
+                <%= f.rich_text_area :content, id: 'goal_way' %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= f.label :deadline, '期限を設定', class: 'col-sm-3 col-form-label' %>
+                <div class="col-sm-9">
+                  <%= f.datetime_field :deadline, class: 'shadow-sm form-control' %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= f.label :reward, '達成後のご褒美', class: 'col-sm-3 col-form-label' %>
+                <div class="col-sm-9">
+                  <%= f.text_area :reward, class: 'shadow-sm form-control' %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= f.label :status, '進捗ステータス', class: 'col-sm-3 col-form-label' %>
+                <div class="col-sm-9">
+                  <%= f.select :status,  Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]} %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-12 text-center">
+                  <%= f.submit '目標を設定する！', class: 'btn btn-secondary rounded-pill shadow' %>
+                </div>
+              </div>
           </div>
-          <div class="form-group row">
-            <%= f.label :category_id, 'カテゴリを選択', class: 'col-sm-3 col-form-label' %>
-            <div class="col-sm-9">
-              <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
-            </div>
-          </div>
-          <!--インフォメーションボタンここから-->
-          <button class="btn btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fa-regular fa-circle-question"></i>
-          </button>
-          <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-              目標を達成するための方法を具体的に書き出してみましょう。
-              箇条書きやリストの作成、参考リンクなども貼ることができます。
-            </div>
-          </div>
-          <!--ここまで-->
-           <div class="form-group row">
-              <%= f.label :content, '目標達成するための方法', class: 'col-sm-3 col-form-label', for: 'goal_way'  %>
-            <div class="col-sm-9">
-            <%= f.rich_text_area :content, id: 'goal_way' %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <%= f.label :deadline, '期限を設定', class: 'col-sm-3 col-form-label' %>
-            <div class="col-sm-9">
-              <%= f.datetime_field :deadline, class: 'form-control' %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <%= f.label :reward, '達成後のご褒美', class: 'col-sm-3 col-form-label' %>
-            <div class="col-sm-9">
-              <%= f.text_area :reward, class: 'form-control' %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <%= f.label :status, '進捗ステータス', class: 'col-sm-3 col-form-label' %>
-            <div class="col-sm-9">
-              <%= f.select :status,  Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]} %>
-            </div>
-          </div>
-
-          <div class="form-group row">
-          <div class="col-sm-12 text-center">
-            <%= f.submit '目標を設定する！', class: 'btn btn-secondary rounded-pill' %>
-          </div>
-          </div>
-        </div>
         <% end %>
       </div>
     </div>
-
-    </div>
   </div>
 </div>
+
+

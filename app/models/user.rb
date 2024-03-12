@@ -26,7 +26,8 @@ class User < ApplicationRecord
   has_many :reporter, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
   has_many :reported, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
   has_many :group_posts
-
+  #バリデーション
+  validates :nickname, presence: true
   # validate :guest_user_cannot_update, on: :update
   def active_for_authentication?
     super && (is_active == true)

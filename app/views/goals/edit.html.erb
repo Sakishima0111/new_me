@@ -6,17 +6,26 @@
           <div class="card">
             <div class="card-body">
               <div class="mx-auto">
-              
+                <% if @goal.errors.any? %>
+                  <div class="alert alert-danger" role="alert">
+                    <strong>以下の項目は必須です</strong>
+                      <ul>
+                      <% @goal.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                      </ul>
+                  </div>
+                <% end %>
                 <div class="form-group row">
                   <%= f.label :title, '目標のタイトル', class: 'col-sm-3 col-form-label' %>
                   <div class="col-sm-9">
-                    <%= f.text_area :title, class: 'form-control' %>
+                    <%= f.text_area :title, class: 'form-control shadow-sm' %>
                   </div>
                 </div>
                 <div class="form-group row">
                   <%= f.label :category_id, 'カテゴリを選択', class: 'col-sm-3 col-form-label' %>
                   <div class="col-sm-9">
-                    <%= f.collection_select :category_id, Category.all,  :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
+                    <%= f.collection_select :category_id, Category.all,  :id, :name, { prompt: '選択してください' }, class: 'shadow-sm form-control' %>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -28,13 +37,13 @@
                 <div class="form-group row">
                   <%= f.label :deadline, '期限を設定', class: 'col-sm-3 col-form-label' %>
                   <div class="col-sm-9">
-                    <%= f.datetime_field :deadline, class: 'form-control' %>
+                    <%= f.datetime_field :deadline, class: 'shadow-sm form-control' %>
                   </div>
                 </div>
                 <div class="form-group row">
                   <%= f.label :reward, '達成後のご褒美', class: 'col-sm-3 col-form-label' %>
                   <div class="col-sm-9">
-                    <%= f.text_area :reward, class: 'form-control' %>
+                    <%= f.text_area :reward, class: 'shadow-sm form-control' %>
                   </div>
                 </div>
        　　     　   <div class="form-group row">
@@ -43,10 +52,10 @@
                     <%= f.select :status, Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]} %>
                   </div>
                 </div>
-      
+
                 <div class="form-group row">
                 <div class="col-sm-12 text-center ">
-                  <%= f.submit '編集完了', class: 'btn btn-secondary rounded-pill' %>
+                  <%= f.submit '編集完了', class: 'btn btn-secondary rounded-pill shadow' %>
                 </div>
               </div>
             </div>

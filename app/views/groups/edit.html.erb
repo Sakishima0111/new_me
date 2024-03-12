@@ -1,32 +1,38 @@
-<h1>Groups#edit</h1>
-<p>Find me in app/views/groups/edit.html.erb</p>
-<h1>グループ編集画面</h1>
+<div class="row">
+<h1 class="text-light text-center">グループ編集画面</h1>
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="card">
+      <div class="card-body">
+        <%= form_with model: @group do |f| %>
+          <% if @group.errors.any? %>
+            <div id="error_explanation">
+            <% @group.errors.full_messages.each do |message| %>
+              <div class="alert alert-danger" role="alert">
+                <strong>以下は必須項目です</strong>
+                <ul>
+                  <li><%= message %></li>
+                </ul>
+              </div>
+            <% end %>
+            </div>
+          <% end %>
 
-<%= form_with model: @group do |f| %>
-  <% if @group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @group.errors.count %> つのエラーが発生しました。</h2>
-      <ul>
-        <% @group.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+            <div class="field">
+              <%= f.label :name, "グループ名" %>
+              <%= f.text_field :name, autofocus: true, class: "shadow-sm form-control" %>
+            </div>
+            <div class="field">
+              <%= f.label :description, "グループの説明" %>
+              <%= f.text_area :description, class: "shadow-sm form-control" %>
+            </div>
+
+          <div class="actions text-center">
+            <%= f.submit "保存する", class: "shadow btn btn-secondary rounded-pill" %>
+          </div>
         <% end %>
-      </ul>
+        <%= link_to '一覧に戻る', group_path(@group.id) %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true %>
   </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "保存する" %>
-  </div>
-<% end %>
-
-<%= link_to '戻る', group_path(@group.id) %>
+</div>

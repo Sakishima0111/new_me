@@ -37,11 +37,11 @@ devise_for :users, skip: [:passwords], controllers: {
     resources :comments, only: [:create, :destroy]
   end
   resources :chats, only: [:show, :create, :destroy]
-  resources :notifications, only: [:index] do
-    collection do
-      post :update_checked
-    end
-  end
+  # resources :notifications, only: [:index] do
+  #   collection do
+  #     post :update_checked
+  #   end
+  # end
   resources :reports, only: [:new, :create]
 
 #管理者側
