@@ -56,7 +56,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   #デバイス
   gem 'devise'
-  #
   gem 'enum_help'
   gem 'actiontext'
   gem 'image_processing', '~> 1.2'
@@ -66,3 +65,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'bootstrap5-kaminari-views', '~> 0.0.1'
   gem 'rails-i18n'
   gem 'devise-i18n-views'
+  gem 'obscenity'

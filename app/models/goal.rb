@@ -4,12 +4,15 @@ class Goal < ApplicationRecord
   has_many :comments, dependent: :destroy
   belongs_to :user
   belongs_to :category, optional: true
-
+  #5文字以上の連続した文字列を制限
+  NGWORD_REGEX = /(.)\1{4,}/.freeze
   #バリデーション
-  validates :title, presence: true
-  validates :content, presence: true
+  with_options format: { without: NGWORD_REGEX, message: 'は5文字以上の繰り返しは禁止です' } do
+    validates :title, presence: true, obscenity: { sanitize: true }
+    validates :content, presence: true
+    validates :reward, presence: true, obscenity: { sanitize: true }
+  end
   validates :deadline, presence: true
-  validates :reward, presence: true
   validates :status, presence: true
 
   # action textの使用

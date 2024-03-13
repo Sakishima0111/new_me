@@ -3,7 +3,5 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :goal
 
-  validates :body, presence: true
-  
-
+  validates :body, presence: true, obscenity: { sanitize: true }
 end

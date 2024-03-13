@@ -24,13 +24,11 @@ class GoalsController < ApplicationController
   def index
     # 新しい投稿が上にくるように表示
     @categories = Category.all
-    if params[:search] == nil || ''
-     @goals = Goal.where(status: Goal.statuses[:in_progress]).order(created_at: :desc)
-    elsif params[:search] == ''
+    if params[:search].blank?
      @goals = Goal.where(status: Goal.statuses[:in_progress]).order(created_at: :desc)
     else
     #部分検索
-     @goals = Goal.where("body LIKE ? ",'%' + params[:search] + '%')
+     @goals = Goal.where("title LIKE ? ",'%' + params[:search] + '%')
     end
   end
 
