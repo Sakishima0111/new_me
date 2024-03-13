@@ -15,6 +15,16 @@ class Admin::UsersController < ApplicationController
       render "edit"
     end
   end
+  def show
+    @user = User.find(params[:id])
+    @goals = @user.goals
+  end
+  def destroy
+    @user = User.find(params[:id])
+    @goal = Goal.find(params[:id])
+    @goal.destroy
+    redirect_to admin_users_path, notice: "削除が完了しました"
+  end
   private
 
   def user_params

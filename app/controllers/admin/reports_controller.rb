@@ -6,6 +6,7 @@ class Admin::ReportsController < ApplicationController
   def show
     @report = Report.find(params[:id])
   end
+  
   def update
     @report = Report.find(params[:id])
     if @report.update(report_params) #ストロングパラメータを通して更新

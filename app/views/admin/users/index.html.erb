@@ -5,6 +5,23 @@
   <div class="col-8">
     <div class="card">
       <div class="card-body">
+        <!--アコーディオンここから-->
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                管理方法
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                ニックネームのリンクを押すと各会員の目標一覧を閲覧・削除できます。
+                また、会員ステータスのリンクを押すと会員ステータスの編集が可能です。
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--ここまで-->
         <table class="table">
           <tr>
             <th>ユーザーID</th>
@@ -15,10 +32,10 @@
           <tr>
             <% @users.each do |user| %>
             <td><%= user.id %></td>
-            <td><%= user.nickname %></td>
+            <td><%= link_to user.nickname, admin_user_path(user) %></td>
             <td><%= user.email %></td>
             <td>
-              <%= user.status_text %></td>
+              <%= link_to user.status_text, edit_admin_user_path(user) %></td>
           </tr>
           　<% end %>
         </table>

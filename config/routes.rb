@@ -52,7 +52,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :admin do
     resources :categories, only: [:index, :create, :edit, :update, :destroy]
-    resources :users, only: [:index, :edit, :update,]
+    resources :users, only: [:index, :edit, :update, :show, :destroy]
     resources :reports, only: [:index, :show, :update]
   end
 end

@@ -1,0 +1,4 @@
+<h1 class="text-center text-light"><%= @user.nickname %>さんの目標一覧 </h1>
+<% @goals.each do |goal| %>
+<%= render "goal", goal: goal %>
+<% end %>
