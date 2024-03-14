@@ -20,6 +20,10 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
   end
+  def list
+    @user = User.find(current_user.id)
+    @groups = @user.groups
+  end
 
   def show
     @group = Group.find(params[:id])

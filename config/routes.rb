@@ -27,6 +27,7 @@ devise_for :users, skip: [:passwords], controllers: {
   # ransackの検索
   get "/search" => "searches#search"
   resources :groups do
+  get 'groups/list' => 'groups#list'
     resource :group_user, only: [:create, :destroy]
   end
   resource :group_post, only: [:create]

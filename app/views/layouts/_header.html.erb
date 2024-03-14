@@ -54,7 +54,7 @@
                 <hr class="dropdown-divider">
               </li>
               <li class="dropdown-item">
-                <%= link_to "管理しているグループ", new_goal_path, class: "nav-link active" %>
+                <%= link_to "参加しているグループ", group_groups_list_path(current_user), class: "nav-link active" %>
               </li>
             </ul>
           </li>
@@ -65,7 +65,7 @@
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link active" %>
             </li>
           </ul>
-          
+
         <% elsif admin_signed_in? %>
            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
@@ -120,7 +120,7 @@
       </div>
     </div>
   </div>
-</div>     
+</div>
 
 
 
