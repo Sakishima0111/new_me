@@ -1,19 +1,27 @@
-<h1>グループ名：<%= @group.name %></h1>
-<h2>グループオーナー：<%= @group.owner.nickname %></h2>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="card">
+      <div class="card-body">
+    <h1><%= @group.name %></h1>
+    <p>グループオーナー：<%= @group.owner.nickname %></p>
+    <p><strong>説明:</strong> <%= @group.description %></p>
+      <% if user_signed_in? %>
+        <% if @group.owner == current_user %>
+          <%= link_to "グループを編集する", edit_group_path(@group.id), class: "btn btn-outline-success" %>
+          <%= link_to "グループを削除する", group_path(@group.id), method: :delete, data: {confirm: "本当にグループを消しますか？"} %>
+        <% elsif @group.group_users.exists?(user_id: current_user.id) %>
+         <%= link_to "脱退する",  group_group_user_path(@group), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+       <% else %>
+         <%= link_to "参加する", group_group_user_path(@group), method: :post, class: "btn btn-outline-primary rounded-pill" %>
+       <% end %>
+     <% end %>
 
-  <% if user_signed_in? %>
-    <% if @group.owner == current_user %>
-      <%= link_to "グループを編集する", edit_group_path(@group.id) %>
-      <%= link_to "グループを削除する", group_path(@group.id), method: :delete, data: {confirm: "本当にグループを消しますか？"} %>
-    <% elsif @group.group_users.exists?(user_id: current_user.id) %>
-     <%= link_to "脱退する",  group_group_user_path(@group), method: :delete %>
-   <% else %>
-     <%= link_to "参加する", group_group_user_path(@group), method: :post%>
-   <% end %>
- <% end %>
-<p><strong>説明:</strong> <%= @group.description %></p>
 
-<%= link_to '一覧に戻る', groups_path %>
+    <%= link_to '一覧に戻る', groups_path, class: "btn btn-outline-secondary rounded-pill" %>
+
+      </div>
+    </div>
 
 <% if @group.users.include?(current_user) %>
   <%= render partial: "group_posts/form", locals: { group_post: @group_post, group: @group } %>
@@ -21,3 +29,6 @@
 <% else %>
 
 <% end %>
+
+  </div>
+</div>

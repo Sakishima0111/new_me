@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :withdraw]
-  # before_action :is_matching_guest_user, only: [:edit, :update, :withdraw]
   def show
     @user = User.find(params[:id])
     @in_progress_goals = @user.goals.where(status: Goal.statuses[:in_progress])
@@ -52,12 +51,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:nickname, :introduction, :image)
   end
-  def is_matching_guest_user
-    @user = User.find(params[:id])
-    if @user.email = "guest@example.com"
-      redirect_to user_path(current_user.id)
-    end
-  end
+
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
