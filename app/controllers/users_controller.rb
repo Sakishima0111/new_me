@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :withdraw]
-  before_action :is_matching_guest_user, only: [:edit, :update, :withdraw]
+  # before_action :is_matching_guest_user, only: [:edit, :update, :withdraw]
   def show
     @user = User.find(params[:id])
     @in_progress_goals = @user.goals.where(status: Goal.statuses[:in_progress])

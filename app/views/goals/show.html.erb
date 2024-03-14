@@ -79,7 +79,10 @@
                 </div>
               </div>
               <div class="col-1">
-                <i class="fa-regular fa-message"></i><div id="comment_counter"><%= render "comments/counter", goal: @goal %></div>
+                <div class="form-inline">
+                  <i class="fa-regular fa-message"></i>
+                  <div id="comment_counter"><%= render "comments/counter", goal: @goal %></div>
+                </div>
               </div>
               <div class="col-2">
                 <%= time_ago_in_words(@goal.created_at) %>前

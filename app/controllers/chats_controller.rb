@@ -63,7 +63,7 @@ class ChatsController < ApplicationController
 
     # ユーザーがお互いにフォローしているか確認し、していない場合はリダイレクト
     unless current_user.following?(user) && user.following?(current_user)
-      redirect_to user_path(current_user.id)
+      redirect_to user_path(current_user.id) # リダイレクト先は適切なものに変更しましょう
     end
   end
 end
