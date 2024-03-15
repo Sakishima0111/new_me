@@ -7,7 +7,7 @@
         <% @users.each do |user| %>
           <div class="row">
             <div class="col-2">
-              <p><%= image_tag user.get_profile_image, size: '50x50', style: 'border-radius: 50%' %></p>
+              <p><%= image_tag user.get_profile_image, size: '50x50', style: 'border-radius: 25%' %></p>
               <p><%= link_to user.nickname, user_path(user.id), data: {"turbolinks" => false} %></p>
             </div>
             <div class="col-7">
@@ -25,7 +25,7 @@
           </div>
           <hr>
         <% end %>
-        
+
       </div>
     </div>
   </div>

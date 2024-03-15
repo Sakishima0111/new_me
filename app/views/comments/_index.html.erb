@@ -5,7 +5,7 @@
         <div class="col-2">
           <div class="card-title">
             <%= link_to user_path(comment.user) do %>
-              <%= image_tag comment.user.image, size: "50x50" %><br>
+              <%= image_tag comment.user.image, size: "50x50", style: 'border-radius: 25%' %><br>
               <%= comment.user.nickname %>
             <% end %>
           </div>

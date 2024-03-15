@@ -2,7 +2,7 @@
     <div class="card-header">
       <div class="row">
         <div class="col-2">
-          <%= image_tag goal.user.get_profile_image, size: '30x30', style: 'border-radius: 50%' %>
+          <%= image_tag goal.user.get_profile_image, size: '30x30', style: 'border-radius: 25%' %>
         </div>
         <div class="col-5">
           <%= link_to goal.user.nickname, user_path(goal.user.id) %>
@@ -15,7 +15,7 @@
     <div class="card-body">
       <h5 class="card-title"><%=link_to goal.title, goal_path(goal.id) %></h5>
       <div class="card-text">
-        limit: <%= l goal.deadline %>
+        <i class="fa-regular fa-calendar"></i> <%= l goal.deadline %>
         <div class="row">
           <p>
 
