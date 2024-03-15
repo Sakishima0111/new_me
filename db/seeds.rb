@@ -1,23 +1,39 @@
-Admin.destroy_all
-Admin.create!(
+Admin.find_or_create_by(
    email: 'admin@admin',
    password: 'testtest'
 )
-User.create!(
+User.find_or_create_by(
    email: 'cat@cat',
    nickname: 'ネコ',
-   introduction: 'にゃー',
-   password: "catcat"
+   introduction: 'テストユーザー1',
+   password: "testtest"
 )
-User.create!(
+User.find_or_create_by(
    email: 'dog@dog',
    nickname: 'いぬ',
-   introduction: 'ワン！',
-   password: "dogdog"
+   introduction: 'テストユーザー2',
+   password: "testtest"
+)
+User.find_or_create_by(
+   email: 'momo@momo',
+   nickname: 'ももたろう',
+   introduction: 'テストユーザー3',
+   password: "testtest"
+)
+User.find_or_create_by(
+   email: 'ura@ura',
+   nickname: 'うらしまたろう',
+   introduction: 'テストユーザー4',
+   password: "testtest"
+)
+User.find_or_create_by(
+   email: 'kin@kin',
+   nickname: 'きんたろう',
+   introduction: 'テストユーザー5',
+   password: "testtest"
 )
 
-
-Category.create([
+Category.find_or_create_by([
   { name: '勉強・資格' },
   { name: '筋トレ・ダイエット' },
   { name: '生活' },
@@ -34,3 +50,4 @@ Category.create([
   { name: '環境' },
   { name: 'その他' },
 ])
+

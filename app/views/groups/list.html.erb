@@ -1,6 +1,36 @@
-<h1><%= @user.nickname %>さんの参加しているグループ</h1>
-<% @groups.each do |group| %>
-  <li>
-    <%= link_to group.name, group_path(group.id) %>
-  </li>
-<% end %>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <h1 class="text-center text-light"><%= @user.nickname %>さんの参加しているグループ</h1>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+            <div class="col-3">
+              グループ名
+            </div>
+            <div class="col-6">
+              グループ説明
+            </div>
+            <div class="col-3">
+              グループメンバー
+            </div>
+        </div>
+        <% @groups.each do |group| %>
+          <hr>
+          <div class="row">
+            <div class="col-3">
+              <%= link_to group.name, group_path(group.id) %>
+            </div>
+            <div class="col-6">
+              <%= group.description %>
+            </div>
+            <div class="col-3">
+              <%= group.users.count %>人
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

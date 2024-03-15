@@ -1,16 +1,22 @@
 <nav class="navbar bg-body-tertiary fixed-top">
-  <div class="container-fluid">
+  <div class="container">
       <div class="navbar-brand">
         <%= link_to root_path do %>
         <img src="../../assets/newme.jpg" ></div>
         <% end %>
-      <%= l Time.zone.now %>
-    <% if user_signed_in? %>
+      <div class="time-now"><%= l Time.zone.now %></div>
+    <div class="user-content">
+      <% if user_signed_in? %>
+      <%= link_to user_path(current_user) do %>
+        <%= image_tag current_user.get_profile_image, size: '45x45', style: 'border-radius: 25%' %>
+      <%= current_user.nickname %>さん
+      <% end %>
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#headerModal">
+      <button type="button" class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#headerModal">
         <i class="fa-regular fa-bell rounded-pill"></i>
         <span class="badge badge-secondary"><%= current_user.passive_notifications.where(is_checked: false).count %></span>
-      </button>
+
+
     <% end %>
     <!--モーダルここまで-->
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -103,6 +109,7 @@
   </div>
 </nav>
 
+
 <div class="modal fade" id="headerModal" tabindex="-1" aria-labelledby="headerModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
@@ -121,6 +128,7 @@
     </div>
   </div>
 </div>
+
 
 
 

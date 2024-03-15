@@ -14,7 +14,9 @@ class GroupUsersController < ApplicationController
     group.users.delete(user)
     redirect_to groups_path
   end
+
 end
+
 
 # user = current_user
 # group.users << user
