@@ -15,6 +15,8 @@ devise_for :users, skip: [:passwords], controllers: {
 #ユーザー側
   root to: "homes#top"
   get '/about' => "homes#about"
+  # LINEbotのリクエスト処理
+  post '/callback' => 'linebot#callback'
   # 退会確認画面
   get  '/users/check' => 'users#check', as: 'check_user'
   # 論理削除用のルーティング
