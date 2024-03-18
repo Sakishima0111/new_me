@@ -1,39 +1,22 @@
-Admin.find_or_create_by(
+Admin.create!(
    email: 'admin@admin',
    password: 'testtest'
 )
-User.find_or_create_by(
+
+User.create!(
    email: 'cat@cat',
    nickname: 'ネコ',
    introduction: 'テストユーザー1',
    password: "testtest"
 )
-User.find_or_create_by(
+User.create!(
    email: 'dog@dog',
    nickname: 'いぬ',
    introduction: 'テストユーザー2',
    password: "testtest"
 )
-User.find_or_create_by(
-   email: 'momo@momo',
-   nickname: 'ももたろう',
-   introduction: 'テストユーザー3',
-   password: "testtest"
-)
-User.find_or_create_by(
-   email: 'ura@ura',
-   nickname: 'うらしまたろう',
-   introduction: 'テストユーザー4',
-   password: "testtest"
-)
-User.find_or_create_by(
-   email: 'kin@kin',
-   nickname: 'きんたろう',
-   introduction: 'テストユーザー5',
-   password: "testtest"
-)
 
-Category.find_or_create_by([
+Category.create!([
   { name: '勉強・資格' },
   { name: '筋トレ・ダイエット' },
   { name: '生活' },
