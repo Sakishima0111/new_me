@@ -8,7 +8,14 @@
       NewMeはニックネームで登録ができるので目標を誰かに見られるのが恥ずかしい人でも大丈夫！<br>
       さあ、なりたい自分への第一歩を踏み出してみませんか？
     </p>
-    <img src="../../assets/応援する人々.png">
+    <%= link_to "新規登録" %>
+    <%= link_to "ログイン" %>
+    <%#= link_to omniauth_authorize_path, data: { turbo: false } do %>
+    <!--<i class="fa-brands fa-line"></i>LINEでログイン"-->
+    <%# end %>
+    <div class="line-it-button" data-lang="ja" data-type="friend" data-env="REAL"   data-lineId="@302kttth" style="display: none;"></div>
+    <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+    
   </div>
 </div>
 

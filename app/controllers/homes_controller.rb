@@ -4,4 +4,8 @@ class HomesController < ApplicationController
 
   def about
   end
+  def privacy_policy
+  end
+  def line
+  end
 end

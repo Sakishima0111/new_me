@@ -15,6 +15,8 @@ devise_for :users, skip: [:passwords], controllers: {
 #ユーザー側
   root to: "homes#top"
   get '/about' => "homes#about"
+  get '/privacy_policy' => "homes#privacy_policy"
+  get '/line' => "homes#line"
   # LINEbotのリクエスト処理
   post '/callback' => 'linebot#callback'
   # 退会確認画面
