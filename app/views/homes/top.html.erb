@@ -3,24 +3,20 @@
      <h1 class="intro-title">Welcome to New Me！</h1>
 
     <div class="intro-1">NewMeで新たな自分に生まれ変わろう</div>
-      <%= link_to "How to use New Me?", about_path, class: "btn btn-outline-primary how_to btn-lg" %>
+      <%= link_to "How to use New Me?", about_path, class: "btn btn-outline-light how_to btn-lg btn-new" %>
   </div>
 
   <div class="text-center text-light top-box2 original-gradient">
 
-    <h2>What is New Me?</h2>
+    <h1 class="intro-title">What is New Me?</h2>
     <p class="text-light">
       New Meはあなたの目標達成を応援するアプリケーションです。<br>
       自身の目標管理はもちろん、似たような目標を持つ人とつながり応援しあうことができます。<br>
       NewMeはニックネームで登録ができるので目標を誰かに見られるのが恥ずかしい人でも大丈夫！<br>
       さあ、なりたい自分への第一歩を踏み出してみませんか？
     </p>
-    <%= link_to "新規登録" %>
-    <%= link_to "ログイン" %>
-    <%#= link_to omniauth_authorize_path, data: { turbo: false } do %>
-    <!--<i class="fa-brands fa-line"></i>LINEでログイン"-->
-    <%# end %>
-    <div class="line-it-button" data-lang="ja" data-type="friend" data-env="REAL"   data-lineId="@302kttth" style="display: none;"></div>
-    <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+    <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-outline-light btn-lg" %>
+
+
 
 </div>

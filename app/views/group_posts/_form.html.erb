@@ -3,8 +3,10 @@
         <%= form_with model: group_post, url: group_post_path, method: :post do |f| %>
             <%= f.label :content, '新規投稿', class: 'col-sm-3 col-form-label' %>
             <%= f.rich_text_area :content %>
-            <%= f.hidden_field :group_id, value: group.id %>
-            <%= f.submit '投稿する', class: 'btn btn-secondary text-center rounded-pill' %>
+            <%= f.hidden_field :group_id, value: group.id %><br>
+            <div class="text-center">
+              <%= f.submit '投稿する', class: 'btn btn-secondary text-center rounded-pill' %>
+            </div>
         <% end %>
       </div>
     </div>

@@ -25,7 +25,9 @@
               <%= group.description %>
             </div>
             <div class="col-3">
-              <%= group.users.count %>人
+              <%= link_to group_group_member_path(group.id) do %>
+                <%= group.users.count %>人
+              <% end %>
             </div>
           </div>
         <% end %>

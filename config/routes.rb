@@ -32,6 +32,7 @@ devise_for :users, skip: [:passwords], controllers: {
   get "/search" => "searches#search"
   resources :groups do
   get 'groups/list' => 'groups#list'
+  get '/group_member' => 'groups#group_member'
     resource :group_user, only: [:create, :destroy]
   end
   resource :group_post, only: [:create]
@@ -61,5 +62,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :categories, only: [:index, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :edit, :update, :show, :destroy]
     resources :reports, only: [:index, :show, :update]
+    resources :comments, only: [:destroy]
   end
 end

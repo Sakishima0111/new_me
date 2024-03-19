@@ -4,27 +4,27 @@
   <div class="col-8">
     <div class="card">
       <div class="card-body">
-        <% @users.each do |user| %>
-          <div class="row">
-            <div class="col-2">
-              <p><%= image_tag user.get_profile_image, size: '50x50', style: 'border-radius: 25%' %></p>
-              <p><%= link_to user.nickname, user_path(user.id), data: {"turbolinks" => false} %></p>
+          <% @users.each do |user| %>
+            <div class="row">
+              <div class="col-2">
+                <p><%= image_tag user.get_profile_image, size: '50x50', style: 'border-radius: 25%' %></p>
+                <p><%= link_to user.nickname, user_path(user.id), data: {"turbolinks" => false} %></p>
+              </div>
+              <div class="col-7">
+                <p><%= user.introduction %></p>
+              </div>
+              <div class="col-3">
+                <% if current_user != user %>
+                    <% if user.followed_by?(current_user) %>
+                        <p><%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete, class: "btn btn-outline-primary rounded-pill" %></p>
+                    <% else %>
+                        <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-primary rounded-pill" %></p>
+                    <% end %>
+                <% end %>
+              </div>
             </div>
-            <div class="col-7">
-              <p><%= user.introduction %></p>
-            </div>
-            <div class="col-3">
-              <% if current_user != user %>
-                  <% if user.followed_by?(current_user) %>
-                      <p><%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete, class: "btn btn-primary rounded-pill" %></p>
-                  <% else %>
-                      <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-success rounded-pill" %></p>
-                  <% end %>
-              <% end %>
-            </div>
-          </div>
-          <hr>
-        <% end %>
+            <hr>
+          <% end %>
 
       </div>
     </div>

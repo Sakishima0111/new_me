@@ -5,6 +5,7 @@ class Admin::ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
+    @comment = @report.content_type.classify.constantize.find(@report.content_id)
   end
   
   def update

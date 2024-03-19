@@ -52,6 +52,11 @@ class GroupsController < ApplicationController
     redirect_to root_path
   end
 
+  def group_member
+    @group = Group.find(params[:group_id])
+    @users = @group.users
+  end
+
   private
 
   def group_params

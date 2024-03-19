@@ -1,12 +1,25 @@
 <div class="row">
   <div class="col-3"></div>
   <div class="col-6">
-<h1 class="text-light text-center">Sign up</h2>
+    <h1 class="text-light text-center">Sign up</h2>
+    <div class="card">
+      <div class="card-body">
+        <strong class="sign-up-text">LINEで簡単登録(期限のお知らせ通知を受け取ることができます。)</strong>
+        <div class="text-center">
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "btn btn-success btn-line" do%>
+            <i class="fa-brands fa-line text-light fa-lg"></i>　LINEで登録
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="card">
     <div class="card-body">
+      <strong class="sign-up-text">情報を入力して新規登録</strong>
       <div class="field">
       <%= f.label :image, 'プロフィール画像' %><br>
       <%= f.file_field :image, class: "form-control" %>
@@ -32,15 +45,20 @@
         <%= f.label :パスワードの確認 %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"  %>
       </div>
-
+      <%= link_to "プライバシーポリシー", privacy_policy_path %>
+      <br>
       <div class="actions text-center">
-        <%= f.submit "Sign up", class: "btn btn-secondary rounded-pill"  %>
+        <%= f.submit "Sign up", class: "btn btn-secondary"  %>
+      </div>
+      <hr>
+      <div class="text-center">
+        ログインはこちらから
+        <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-primary" %>
+
       </div>
     </div>
   </div>
 <% end %>
-<div class="btn btn-light rounded-pill">
-  <%= render "devise/shared/links" %>
-</div>
+
   </div>
 </div>
