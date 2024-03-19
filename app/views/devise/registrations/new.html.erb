@@ -7,8 +7,8 @@
         <strong class="sign-up-text">LINEで簡単登録(期限のお知らせ通知を受け取ることができます。)</strong>
         <div class="text-center">
         <%- resource_class.omniauth_providers.each do |provider| %>
-          <%= link_to omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "btn btn-success btn-line" do%>
-            <i class="fa-brands fa-line text-light fa-lg"></i>　LINEで登録
+          <%= link_to omniauth_authorize_path(resource_name, provider), method: :post, data: { turbo: false }, class: "btn btn-success btn-line" do%>
+            <i class="fa-brands fa-line text-light fa-lg fa-fw mr-2"></i>LINEで登録
           <% end %>
         <% end %>
         </div>

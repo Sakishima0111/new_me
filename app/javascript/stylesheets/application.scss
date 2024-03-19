@@ -1,1 +1,10 @@
 @use '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Zen+Kaku+Gothic+Antique&display=swap');
+
+html, body {
+  font-family: "Raleway", "Zen Kaku Gothic Antique", sans-serif !important;
+}
+
+.form-control {
+  appearance: auto !important;
+}

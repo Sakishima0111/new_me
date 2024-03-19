@@ -22,7 +22,7 @@
               <td>通報内容</td>
               <% if @comment.present? %>
                 <td><%= @report.content_type.classify.constantize.find(@report.content_id).body %></td>
-                <td><%= link_to "削除", admin_comment_path(@comment.id), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: '本当に削除しますか？' }  %></td>
+                <td><%= link_to "削除", admin_report_comment_path(@comment.id), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: '本当に削除しますか？' }  %></td>
               <% else %>
                 コメントは削除されました
               <% end %>

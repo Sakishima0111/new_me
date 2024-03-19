@@ -60,7 +60,7 @@
               <div class="form-group row">
                 <%= f.label :status, '進捗ステータス', class: 'col-sm-3 col-form-label' %>
                 <div class="col-sm-9">
-                  <%= f.select :status,  Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]} %>
+                  <%= f.select :status,  Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]}, {}, {class: 'form-control'} %>
                 </div>
               </div>
               <div class="form-group row">

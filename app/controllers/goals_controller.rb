@@ -25,7 +25,7 @@ class GoalsController < ApplicationController
     # 新しい投稿が上にくるように表示
     @categories = Category.all
     if params[:search].blank?
-     @goals = Goal.where(status: Goal.statuses[:in_progress]).order(created_at: :desc)
+     @goals = Goal.where(status: Goal.statuses[:in_progress]).order(created_at: :desc).page(params[:page]).per(21)
     else
     #部分検索
      @goals = Goal.where("title LIKE ? ",'%' + params[:search] + '%')

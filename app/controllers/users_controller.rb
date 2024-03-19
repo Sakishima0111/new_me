@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   before_action :is_matching_guest_user, only: [:edit, :update, :withdraw]
   def show
     @user = User.find(params[:id])
-    @in_progress_goals = @user.goals.where(status: Goal.statuses[:in_progress])
-    @completed_goals = @user.goals.where(status: Goal.statuses[:completed])
-    @not_started_goals = @user.goals.where(status: Goal.statuses[:not_started])
+    @in_progress_goals = @user.goals.where(status: Goal.statuses[:in_progress]).page(params[:page]).per(18)
+    @completed_goals = @user.goals.where(status: Goal.statuses[:completed]).page(params[:page]).per(18)
+    @not_started_goals = @user.goals.where(status: Goal.statuses[:not_started]).page(params[:page]).per(18)
   end
 
   def edit
@@ -38,12 +38,12 @@ class UsersController < ApplicationController
 
   def follows
     user = User.find(params[:id])
-    @users = user.followings
+    @users = user.followings.page(params[:page]).per(10)
   end
 
   def followers
     user = User.find(params[:id])
-    @users = user.followers
+    @users = user.followers.page(params[:page]).per(10)
   end
 
 
