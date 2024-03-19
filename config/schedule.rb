@@ -27,8 +27,8 @@ rails_env = ENV['RAILS_ENV'] || :development
 # cronを実行する環境変数をセット
 set :environment, rails_env
 # cronのログの吐き出し場所
-set :output, "#{Rails.root}/log/cron.log"
+set :output, File.expand_path(File.dirname(__FILE__) + '/../log/cron.log')
 
-every :minute do
-  runner 'PushLineJob'
+every :day do
+  runner 'PushLineJob.perform_now'  # メソッドの実行に"perform_now"を追加
 end
