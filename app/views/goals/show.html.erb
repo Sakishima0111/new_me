@@ -13,26 +13,36 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-10">
+              <div class="col-9">
                 <h3 class="card-title"><%= @goal.title %></h3>
               </div>
-              <div class="col-2">
-                <% if @goal.user.id == current_user.id %>
-                <span class="<%= @goal.status %>.to_s">
-                  <%= form_with model: @goal, url: goal_goal_status_update_path(@goal.id), method: :patch do |f| %>
-                    <%= f.select :status, Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]} %>
-                      <%= button_tag type: :submit, class: "btn btn-primary rounded-pill btn-sm" do %>
-                        <i class="fa-solid fa-check text-light"></i>
+              <div class="col-3">
+                <div class="text-right">
+                  <% if @goal.user.id == current_user.id %>
+
+                  <span class="<%= @goal.status %>.to_s"></span>
+                    <%= form_with model: @goal, url: goal_goal_status_update_path(@goal.id), method: :patch do |f| %>
+                      <div class="form-inline">
+                        <div class="input-group">
+                      <%= f.select :status, Goal.statuses.keys.map {|k| [I18n.t("enums.goal.status.#{k}"), k]}, {}, {class: "form-control"} %>
+                        <%= button_tag type: :submit, class: "btn btn-secondary btn-sm" do %>
+                          <i class="fa-solid fa-check text-light"></i>
+                        <% end %>
+                        </div>
+                      </div>
                       <% end %>
                   <% end %>
-                <% end %>
-                </span>
+
+                </div>
               </div>
             </div>
             <h6 class="card-subtitle mb-2 text-body-secondary"><i class="fa-regular fa-calendar"></i> <%= l @goal.deadline %></h6>
+            <% if @goal.category.present? %>
+              <p><i class="fa-solid fa-tag"></i><%= @goal.category.name %></p>
+            <% end %>
             <p class="card-text">
               <%= @goal.content %><br>
-              <i class="fa-solid fa-hands-holding"></i> <%= @goal.reward %><br>
+              ごほうび: <%= @goal.reward %><br>
             </p>
     <!--振り返り機能条件ここから-->
             <% if @goal.lookback == nil && @goal.status == "completed" &&  @goal.user.id == current_user.id %>
@@ -98,7 +108,7 @@
               </div>
               <div class="col-8">
                 <div class="text-right">
-                
+
                 <%= link_to "https://twitter.com/share?url=#{goal_url(@goal)}&text=【新たな目標】%0a%0a#{@goal.title}", target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", class: "btn btn-light rounded-pill" do %>
                   <i class="fa-brands fa-x-twitter"></i>
                 <% end %>

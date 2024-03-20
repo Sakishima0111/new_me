@@ -1,13 +1,25 @@
-<h1>本当に退会しますか？</h1>
-  <p>
-    退会すると、会員登録情報や<br>
-    これまでの目標のデータが消えてしまいます。<br>
-    退会する場合は、「退会する」をクリックしてください。
-  </p>
+<div class="row">
+  <div class="col-3"></div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h2>本当に退会しますか？</h2>
+          <p>
+            退会すると、会員登録情報や<br>
+            これまでの目標のデータが消えてしまいます。<br>
+            退会する場合は、「退会する」をクリックしてください。<br>
+            <br>
+            LINE登録されている方は同じアカウントで登録できなくなってしまいます。<br>
+            再登録される際には運営にお問い合わせください。
+          </p>
 
-  <%= link_to "退会しない", user_path(current_user.id), :class => "btn btn-primary ms-3", data: {"turbolinks" => false} %>
-  <% if @user.email == 'guest@example.com'%>
-    <p class="text-light">ゲストユーザーは退会できません</p>
-  <% else %>
-    <%= link_to "退会する", users_withdraw_path, method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に退会しますか？"}  %>
-  <% end %>
+          <%= link_to "退会しない", user_path(current_user.id), :class => "btn btn-outline-secondary ms-3 rounded-pill", data: {"turbolinks" => false} %>
+          <% if @user.email == 'guest@example.com'%>
+            <p class="text-light">ゲストユーザーは退会できません</p>
+          <% else %>
+            <%= link_to "退会する", users_withdraw_path, method: :patch, :class => "btn btn-outline-danger ms-3 rounded-pill", data: { confirm: "本当に退会しますか？"}  %>
+          <% end %>
+        </div>
+      </div>
+  </div>
+</div>

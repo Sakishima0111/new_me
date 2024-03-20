@@ -11,6 +11,7 @@
             <th>通報者</th>
             <th>通報された人</th>
             <th>通報内容</th>
+            <th>対処</th>
           </tr>
             <% @reports.each do |report| %>
           <tr>
@@ -18,6 +19,7 @@
             <td><%= report.reporter.nickname %></td>
             <td><%= report.reported.nickname %></td>
             <td><%= report.reason_i18n %></td>
+            <td><%= report.status_i18n %></td>
           </tr>
           　<% end %>
         </table>

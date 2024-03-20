@@ -3,6 +3,6 @@ class Admin::CommentsController < ApplicationController
     @report = Report.find(params[:report_id])
     @comment = Comment.find(@report.content_id)
     @comment.destroy
-    redirect_to request.referer
+    redirect_to admin_reports_path
   end
 end

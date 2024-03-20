@@ -22,7 +22,7 @@
               <td>通報内容</td>
               <% if @comment.present? %>
                 <td><%= @report.content_type.classify.constantize.find(@report.content_id).body %></td>
-                <td><%= link_to "削除", admin_report_comment_path(@comment.id), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: '本当に削除しますか？' }  %></td>
+                <td><%= link_to "削除", admin_report_comment_path(@report.id,@comment.id), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: '本当に削除しますか？' }  %></td>
               <% else %>
                 コメントは削除されました
               <% end %>
@@ -35,9 +35,13 @@
               <td>対応ステータス</td>
               <td>
                 <%= @report.status_i18n %>
-                <%= form_with model:@report, url:admin_report_path(@report), method: :patch, local: true do |f| %>
-                  <%= f.select :status, Report.statuses.keys.map { |k| [t("enums.report.status.#{k}"), k] } %>
-                  <%= f.submit '更新' %>
+                <%= form_with model:@report, url: admin_report_path(@report), method: :patch, local: true do |f| %>
+                  <div class="form-inline">
+                    <div class="input-group">
+                      <%= f.select :status, Report.statuses.keys.map { |k| [t("enums.report.status.#{k}"), k] }, {}, {class: "form-control"}%>
+                      <%= f.submit '更新', class: "btn btn-sm btn-secondary" %>
+                    </div>
+                  </div>
                 <% end %>
               </td>
             </tr>

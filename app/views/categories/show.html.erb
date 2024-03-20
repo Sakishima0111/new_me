@@ -1,5 +1,5 @@
 <div class="row">
-  <h1>Goals</h1>
+  <h1 class="text-center text-light">Goals</h1>
   <%= render "index", categories: @categories %>
 </div>
 <% if @goals.present? %>
@@ -9,5 +9,6 @@
     <% end %>
   </div>
 <% else %>
- <h3>このカテゴリの目標はまだありません</h3>
+<br>
+ <h3 class="text-center text-light">このカテゴリの目標はまだありません</h3>
 <% end %>

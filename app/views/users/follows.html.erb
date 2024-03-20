@@ -11,7 +11,7 @@
                 <p><%= link_to user.nickname, user_path(user.id), data: {"turbolinks" => false} %></p>
               </div>
               <div class="col-7">
-                <p><%= user.introduction %></p>
+                <p><%= truncate(user.introduction, length: 90) %></p>
               </div>
               <div class="col-3">
                 <% if current_user != user %>

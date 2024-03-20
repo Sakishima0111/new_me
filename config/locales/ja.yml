@@ -69,6 +69,7 @@ ja:
         reward: "達成後のご褒美"
       user:
         nickname: "ニックネーム"
+        introduction: "自己紹介"
       group:
         name: "グループ名"
         description: "グループの説明"

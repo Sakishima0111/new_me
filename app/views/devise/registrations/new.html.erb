@@ -16,8 +16,9 @@
     </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
   <div class="card">
+      <%= render "devise/shared/error_messages", resource: resource %>
+
     <div class="card-body">
       <strong class="sign-up-text">情報を入力して新規登録</strong>
       <div class="field">
