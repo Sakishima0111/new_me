@@ -2,6 +2,18 @@
   <div class="col-3"></div>
   <div class="col-6">
     <h1 class="text-light text-center">Log in</h1>
+    <div class="card">
+      <div class="card-body">
+        <strong class="sign-up-text">LINEでログイン</strong>
+        <div class="text-center">
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to omniauth_authorize_path(resource_name, provider), method: :post, data: { turbo: false }, class: "btn btn-success btn-line" do%>
+            <i class="fa-brands fa-line text-light fa-lg fa-fw mr-2"></i>LINEログイン
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="card">
         <div class="card-body">
@@ -9,26 +21,29 @@
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
           </div>
-        
+
           <div class="field">
             <%= f.label :password %><br />
             <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
           </div>
-        
+
           <% if devise_mapping.rememberable? %>
             <div class="field">
               <%= f.check_box :remember_me %>
               <%= f.label :remember_me %>
             </div>
           <% end %>
-        
+
           <div class="actions text-center">
-            <%= f.submit "Log in", class: "btn btn-outline-success rounded-pill" %>
+            <%= f.submit "Log in", class: "btn btn-primary" %>
+          </div>
+          <hr>
+          <div class="text-center">
+            ゲストログインはこちら
+            <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary  mr-3" %>
           </div>
         </div>
       </div>
     <% end %>
-    <%= render "devise/shared/links" %>
-    <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-light rounded-pill mr-3" %>
-  </div>
+   </div>
 </div>
