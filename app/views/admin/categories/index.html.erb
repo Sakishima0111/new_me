@@ -2,11 +2,18 @@
   <div class="col-2"></div>
   <div class="col-4">
     <h2 class="text-light">カテゴリ追加</h2>
-      <%  @category.errors.full_messages.each do |message| %>
-        <div class="alert alert-danger" role="alert">
-          <p><%= message %></p>
-        </div>
-      <% end %>
+    <% if @category.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <strong>以下の項目は必須です</strong>
+        <ul>
+          <%  @category.errors.full_messages.each do |message| %>
+            <div class="alert alert-danger" role="alert">
+              <p><%= message %></p>
+            </div>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <%=form_with model: @category, url: admin_categories_path, method: :post do |f| %>
       <%= f.label :"カテゴリ名", class: "mr-3 text-light" %>
       <div class="form-inline">
