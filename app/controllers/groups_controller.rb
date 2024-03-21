@@ -18,11 +18,11 @@ class GroupsController < ApplicationController
     end
   end
   def index
-    @groups = Group.all
+    @groups = Group.all.page(params[:page]).per(10)
   end
   def list
     @user = User.find(current_user.id)
-    @groups = @user.groups
+    @groups = @user.groups.page(params[:page]).per(10)
   end
 
   def show
@@ -54,7 +54,7 @@ class GroupsController < ApplicationController
 
   def group_member
     @group = Group.find(params[:group_id])
-    @users = @group.users
+    @users = @group.users.page(params[:page]).per(10)
   end
 
   private
