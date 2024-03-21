@@ -17,19 +17,17 @@
 
     <div class="form-inline">
         <div class="mx-auto">
-            <%= form_with model: @chat, data: {remote: true} do |f| %>
+          <%= form_with model: @chat, data: {remote: true} do |f| %>
               <%= f.text_field :message, class: "form-control" %>
               <%= button_tag type: "submit", class: "btn btn-secondary" do %>
                 <i class="fa-solid fa-paper-plane text-light"></i>
               <% end %>
               <%= f.hidden_field :room_id %>
-            <% end %>
+          <% end %>
           <div id="chats_errors">
             <%= render "layouts/errors", model: @chat %>
           </div>
-
         </div>
     </div>
-
   </div>
 </div>
