@@ -8,9 +8,9 @@ class Goal < ApplicationRecord
   NGWORD_REGEX = /(.)\1{4,}/.freeze
   #バリデーション
   with_options format: { without: NGWORD_REGEX, message: 'は5文字以上の繰り返しは禁止です' } do
-    validates :title, presence: true, obscenity: { sanitize: true }
-    validates :content, presence: true
-    validates :reward, presence: true, obscenity: { sanitize: true }
+    validates :title, presence: true, obscenity: { sanitize: true }, length: { maximum: 20 }
+    validates :content, presence: true, length: { maximum: 140 }
+    validates :reward, presence: true, obscenity: { sanitize: true }, length: { maximum: 30 }
   end
   validates :deadline, presence: true
   validates :status, presence: true

@@ -1,1 +1,13 @@
-$('.errors').html("<%= j(render 'layouts/errors', obj: @chat) %>");
+<% if model.errors.any? %>
+  <div id="error_explanation">
+    <h3>
+      <%= pluralize(obj.errors.count, "error") %> prohibited this model from being saved:
+    </h3>
+
+    <ul>
+      <% model.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

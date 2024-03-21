@@ -28,7 +28,7 @@ class User < ApplicationRecord
   has_many :reported, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
   has_many :group_posts
   #バリデーション
-  validates :nickname, presence: true
+  validates :nickname, presence: true, length: { maximum: 20 }
   validates :introduction, length: { maximum: 140 }
   # validate :guest_user_cannot_update, on: :update
   def active_for_authentication?

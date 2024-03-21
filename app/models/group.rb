@@ -5,6 +5,6 @@ class Group < ApplicationRecord
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
 
   #バリデーション
-  validates :name, presence: true, uniqueness: true
-  validates :description, presence: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
+  validates :description, presence: true, length: { maximum: 140 }
 end

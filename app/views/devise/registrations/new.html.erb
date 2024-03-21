@@ -26,7 +26,7 @@
       <%= f.file_field :image, class: "form-control" %>
       </div>
       <div class="field">
-      <%= f.label :nickname, 'ニックネーム' %><br>
+      <%= f.label :nickname, 'ニックネーム(20文字以内)' %><br>
       <%= f.text_field :nickname, class: "form-control"  %>
       </div>
       <div class="field">
@@ -37,7 +37,7 @@
       <div class="field">
         <%= f.label :password, 'パスワード' %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 文字以上で設定してください。)</em>
+        (<%= @minimum_password_length %> 文字以上)
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password", class: "form-control"  %>
       </div>

@@ -88,6 +88,7 @@
           <% @in_progress_goals.each do |goal| %>
             <%= render "goal", goal: goal %>
           <% end %>
+          <%= paginate @in_progress_goals, theme: 'bootstrap-5', class: "paginations" %>
           </div>
         </div>
         <div id="not_started" class="tab-pane fade">
@@ -95,6 +96,7 @@
           <% @not_started_goals.each do |goal| %>
             <%= render "goal", goal: goal %>
           <% end %>
+          <%= paginate @not_started_goals, theme: 'bootstrap-5', class: "paginations" %>
           </div>
         </div>
         <div id="completed" class="tab-pane fade">
@@ -102,6 +104,7 @@
           <% @completed_goals.each do |goal| %>
             <%= render "goal", goal: goal %>
           <% end %>
+          <%= paginate @completed_goals, theme: 'bootstrap-5', class: "paginations" %>
           </div>
         </div>
       </div>
