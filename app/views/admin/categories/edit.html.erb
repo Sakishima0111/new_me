@@ -8,10 +8,8 @@
       <div class="alert alert-danger" role="alert">
         <strong>以下の項目は必須です</strong>
         <ul>
-          <%  @category.errors.full_messages.each do |message| %>
-            <div class="alert alert-danger" role="alert">
+          <% @category.errors.full_messages.each do |message| %>
               <p><%= message %></p>
-            </div>
           <% end %>
         </ul>
       </div>

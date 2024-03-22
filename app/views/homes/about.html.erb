@@ -1,57 +1,61 @@
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h1 class="text-light">How to use New Me?</h1>
-    <div id="carouselExampleCaptions" class="carousel slide">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <%= image_tag asset_path("目標投稿.png", alt: "1枚目"), class: "d-block w-100"  %>
-          <div class="carousel-caption d-none d-md-block">
+    <h1 class="text-light text-center">How to use New Me?</h1>
+    <div class="card ">
+      <div class="card-body">
+          <h3 class="marker">１、目標を立てる</h3>
+          <p>まずは目標を立てます。<strong>目標のタイトル、カテゴリ、方法、期限、ご褒美、進捗ステータス</strong>を設定することができます!
+            作成した目標は期限がきたらステータスを達成に更新し、<strong>振り返り</strong>をしてみましょう！<br>
+           成功したか失敗したかが重要ではなく、<strong>目標を立てる前の自分から変われたかどうか</strong>が重要です！！
+          </p>
+          <h3 class="marker">２、応援する</h3>
+          <p>
+            <strong>応援ボタンやコメント</strong>を用いて、目標達成のために頑張っている人を応援してみましょう！<br>
+            もしかしたら自分にも応援が返ってくるかも？<br>
+            達成済みの目標は振り返りをみることができます。達成した人がどんなことをしていたか参考にしてみましょう！！
+          </p>
+          <h3 class="marker">３、グループで活動する</h3>
+          <p>
+            似た目標を持った人どうしで<strong>励ましあったり、日々の記録、アドバイス</strong>などをしましょう!<br>
+            1人では続けられないという人はグループ活動から始めるのがおすすめです！
+          </p>
+        <br>
+        <div id="carouselExampleCaptions" class="carousel slide carousel-fade">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
-        </div>
-        <div class="carousel-item">
-          <%= image_tag asset_path("応援.png", alt: "2枚目"), class: "d-block w-100"  %>
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <%= image_tag asset_path("目標投稿.png", alt: "1枚目"), class: "d-block w-100"  %>
+              <div class="carousel-caption d-none d-md-block">
+              </div>
+            </div>
+            <div class="carousel-item">
+              <%= image_tag asset_path("応援.png", alt: "2枚目"), class: "d-block w-100"  %>
+              <div class="carousel-caption d-none d-md-block">
 
+              </div>
+            </div>
+            <div class="carousel-item">
+              <%= image_tag asset_path("グループ.png", alt: "3枚目"), class: "d-block w-100"  %>
+              <div class="carousel-caption d-none d-md-block">
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="carousel-item">
-          <%= image_tag asset_path("グループ.png", alt: "3枚目"), class: "d-block w-100"  %>
-          <div class="carousel-caption d-none d-md-block">
-          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
-    <br>
-<div class="card">
-  <div class="card-body">
-
-    <h3>１、目標を立てる</h3>
-    <p>まずは目標を立てます。目標のタイトル、カテゴリ、方法、期限、ご褒美、進捗ステータスを設定することができます。</p>
-    <h3>２、応援する</h3>
-    <p>
-      応援ボタンやコメントを用いて、目標達成のために頑張っている人を応援してみましょう！<br>
-      もしかしたら自分にも応援が返ってくるかも？<br>
-      達成済みの目標は振り返りをみることができます。達成した人がどんなことをしていたか参考にしてみましょう！！
-    </p>
-    <h3>３、グループで活動する</h3>
-    <p>似た目標を持った人どうしで励ましあったり、日々の記録、アドバイスなどをしましょう。</p>
   </div>
-
-  </div>
-</div>
-<div class="col-md-2"></div>
+  <div class="col-md-2"></div>
 </div>

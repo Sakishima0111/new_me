@@ -109,13 +109,17 @@ header{
 
 /* 表示しているページ番号のデザイン */
 .pagination>.active>a {
-  background: #93c9ff;     /*背景の色を変える*/
-  border-radius: 15px;     /*角を丸くする*/
+  background: #93c9ff; /*背景の色を変える*/
+  border-radius: 15px !important;     /*角を丸くする*/
+  color: #fff;
+  background-color: #96ABBD !important;
+  border-color: #007bff;
+
 }
 
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {
-  border-radius: 15px;    /*角を丸くする*/
+  border-radius: 15px !important;    /*角を丸くする*/
 }
 // フッター
 footer{
@@ -213,4 +217,26 @@ footer{
 }
 .sign-up-text{
   color: #7ea0bc;
+}
+.marker {
+
+  /* マーカーを引く
+  rgba(255, 153, 0,0.5) の部分はマーカーの色を指定しています。
+　実装される際は、お好きな色、透明度をお入れ下さい。 */
+  background:linear-gradient(transparent 50%, rgba(255, 153, 0,0.5) 50%); /* マーカーを引く */
+
+  /* インライン属性を指定する */
+  display: inline;
+  /* 背景の繰り返しを停止 */
+  background-repeat: no-repeat;
+
+  /* マーカーの横方向を0にして縮める */
+  background-size: 0% 100%;
+
+  /* マーカーが引かれる速度を指定 */
+  transition:background-size 1.5s;
+}
+.marker.on {
+  /* 横方向を100%にして、マーカーを引く */
+  background-size: 100% 100%;
 }
