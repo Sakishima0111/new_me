@@ -2,10 +2,11 @@
   <h1 class="text-center text-light">Goals</h1>
   <%= render "index", categories: @categories %>
 </div>
+
 <% if @goals.present? %>
   <div class="card-deck">
-    <% @goals.each do |goal| %>
-    <%= render "users/goal", goal: goal %>
+    <% @goals.each do |goal| %><br>
+      <%= render "users/goal", goal: goal %>
     <% end %>
   </div>
 <% else %>

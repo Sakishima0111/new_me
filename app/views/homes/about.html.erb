@@ -53,6 +53,12 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
+        </div><br>
+        <% unless signed_in? %>
+        <div class="text-center">
+          <%= link_to "新規登録して始める", new_user_registration_path, class: "btn btn-outline-primary btn-lg" %> もしくは
+          <%= link_to "ゲストログイン(お試し版)", users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary  mr-3 btn-lg" %>
+        <% end %>
         </div>
       </div>
     </div>

@@ -15,8 +15,11 @@
       NewMeはニックネームで登録ができるので目標を誰かに見られるのが恥ずかしい人でも大丈夫！<br>
       さあ、なりたい自分への第一歩を踏み出してみませんか？
     </p>
-    <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-outline-light btn-lg" %>
-
+    <% unless signed_in? %>
+      <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-outline-light btn-lg" %>
+    <% else %>
+      <%= link_to "目標を投稿する！", new_goal_path, class: "btn btn-outline-light btn-lg" %>
+    <% end %>
 
 
 </div>
