@@ -26,12 +26,12 @@
               <%= f.label :description, "グループの説明" %>
               <%= f.text_area :description, class: "shadow-sm form-control" %>
             </div>
-
+          <br>
           <div class="actions text-center">
             <%= f.submit "保存する", class: "shadow btn btn-secondary rounded-pill" %>
           </div>
         <% end %>
-        <%= link_to "戻る", group_path(@group.id) %>
+        <%= link_to "戻る", group_path(@group.id), style: "text-decoration:none;"%>
       </div>
     </div>
   </div>

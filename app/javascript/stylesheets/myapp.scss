@@ -240,3 +240,7 @@ footer{
   /* 横方向を100%にして、マーカーを引く */
   background-size: 100% 100%;
 }
+
+span.title-marker{
+  background: linear-gradient(transparent 60%, rgba(255, 153, 0,0.5) 50%);
+}

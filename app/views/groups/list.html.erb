@@ -19,13 +19,13 @@
           <hr>
           <div class="row">
             <div class="col-3">
-              <%= link_to group.name, group_path(group.id) %>
+              <%= link_to group.name, group_path(group.id), style: "text-decoration:none;" %>
             </div>
             <div class="col-6">
               <%= group.description %>
             </div>
             <div class="col-3">
-              <%= link_to group_group_member_path(group.id) do %>
+              <%= link_to group_group_member_path(group.id), style: "text-decoration:none;" do %>
                 <%= group.users.count %>人
               <% end %>
             </div>

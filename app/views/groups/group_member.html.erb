@@ -14,7 +14,7 @@
           <% @users.each do |user| %>
           <tr>
             <td>
-              <%= link_to user.nickname, user_path(user) %>
+              <%= link_to user.nickname, user_path(user), style: "text-decoration:none;" %>
             </td>
             <td>
               <%= truncate(user.introduction, length: 35) %>

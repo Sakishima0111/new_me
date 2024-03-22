@@ -8,7 +8,7 @@
       <div class="time-now"><%= l Time.zone.now %></div>
     <div class="user-content">
       <% if user_signed_in? %>
-      <%= link_to user_path(current_user) do %>
+      <%= link_to user_path(current_user), style: "text-decoration:none;" do %>
         <%= image_tag current_user.get_profile_image, size: '45x45', style: 'border-radius: 25%' %>
       <%= current_user.nickname %>さん
       <% end %>
