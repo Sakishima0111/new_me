@@ -20,6 +20,7 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all.page(params[:page]).per(10)
   end
+  #ログインユーザーの参加グループ
   def list
     @user = User.find(current_user.id)
     @groups = @user.groups.page(params[:page]).per(10)

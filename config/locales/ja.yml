@@ -75,4 +75,6 @@ ja:
         description: "グループの説明"
       category:
         name: "カテゴリ名"
+      chat:
+        message: "メッセージ"
 

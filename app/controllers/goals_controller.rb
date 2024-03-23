@@ -27,7 +27,7 @@ class GoalsController < ApplicationController
     if params[:search].blank?
      @goals = Goal.where(status: Goal.statuses[:in_progress]).order(created_at: :desc).page(params[:page]).per(20)
     else
-    #部分検索
+    #目標部分検索
      @goals = Goal.where("title LIKE ? ",'%' + params[:search] + '%').page(params[:page]).per(20)
     end
   end

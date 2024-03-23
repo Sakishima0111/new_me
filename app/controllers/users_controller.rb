@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :is_matching_guest_user, only: [:edit, :update, :withdraw]
   def show
     @user = User.find(params[:id])
+    # ステータスごとの目標呼び出し
     @in_progress_goals = @user.goals.where(status: Goal.statuses[:in_progress]).page(params[:page]).per(9)
     @completed_goals = @user.goals.where(status: Goal.statuses[:completed]).page(params[:page]).per(9)
     @not_started_goals = @user.goals.where(status: Goal.statuses[:not_started]).page(params[:page]).per(9)
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-
+  # 退会処理に関する記述
   def withdraw
     @user = User.find(current_user.id)
     @user.update(is_active: false)
@@ -52,6 +53,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:nickname, :introduction, :image)
   end
+  #ゲストユーザーのアクション制限
   def is_matching_guest_user
     @user = User.find(params[:id])
     if @user.email == "guest@example.com"
