@@ -1,5 +1,6 @@
 class GoalsController < ApplicationController
-   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy, :lookback_add, :status_update]
   def new
     @goal = Goal.new
   end
@@ -33,11 +34,11 @@ class GoalsController < ApplicationController
   end
 
   def edit
-    @goal = Goal.find(params[:id])
+    #@goal = Goal.find(params[:id])
   end
 
   def update
-    @goal = Goal.find(params[:id])
+    #@goal = Goal.find(params[:id])
     if @goal.update(goal_params)
       redirect_to goal_path(@goal), notice: "目標を修正しました"
     else
@@ -48,13 +49,13 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    goal = Goal.find(params[:id])
-    goal.destroy
+    #goal = Goal.find(params[:id])
+    @goal.destroy
     redirect_to user_path(current_user.id)
   end
   # 目標の振り返りを追加するアクション。edit,updateと同じ役割。
   def lookback_add
-    @goal = Goal.find(params[:goal_id])
+    #@goal = Goal.find(params[:goal_id])
     if @goal.update(goal_params)
       redirect_to goal_path(@goal), notice: "目標の振り返りが完了しました。"
     else
@@ -63,7 +64,7 @@ class GoalsController < ApplicationController
   end
   # ステータスを詳細ページで修正
   def status_update
-    @goal = Goal.find(params[:goal_id])
+    #@goal = Goal.find(params[:goal_id])
     if @goal.update(goal_params)
       redirect_to goal_path(@goal), notice: "ステータスの変更が完了しました。"
     else
@@ -76,10 +77,16 @@ class GoalsController < ApplicationController
   def goal_params
     params.require(:goal).permit(:title, :content, :deadline, :reward, :status, :category_id, :lookback)
   end
+  
   def is_matching_login_user
-      goal = Goal.find(params[:id])
-    unless goal.user.id == current_user.id
-      redirect_to user_path(current_user.id)
+    if params[:goal_id].present?
+      goal_id = params[:goal_id]
+    elsif params[:id].present?
+      goal_id = params[:id]
+    end
+    @goal = current_user.goals.find_by(id: goal_id)
+    if !@goal
+      redirect_to user_path(current_user)
     end
   end
 end

@@ -244,3 +244,8 @@ footer{
 span.title-marker{
   background: linear-gradient(transparent 60%, rgba(255, 153, 0,0.5) 50%);
 }
+
+.card-content>.trix-content>div{
+  height: 70px;
+  overflow: hidden;
+}
