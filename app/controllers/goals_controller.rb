@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+   before_action :is_matching_login_user, only: [:edit, :update, :destroy, :lookback_add, :status_update]
   def new
     @goal = Goal.new
   end
@@ -28,7 +28,7 @@ class GoalsController < ApplicationController
      @goals = Goal.where(status: Goal.statuses[:in_progress]).order(created_at: :desc).page(params[:page]).per(20)
     else
     #目標部分検索
-     @goals = Goal.where("title LIKE ? ",'%' + params[:search] + '%').page(params[:page]).per(20)
+     @goals = Goal.where("title LIKE ? ",'%' + params[:search] + '%').order(created_at: :desc).page(params[:page]).per(20)
     end
   end
 

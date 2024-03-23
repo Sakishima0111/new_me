@@ -1,4 +1,5 @@
 class ChatsController < ApplicationController
+  before_action :authenticate_user!
   # showアクションにおいて、関連のないユーザーをブロックする
   before_action :block_non_related_users, only: [:show]
 

@@ -1,7 +1,7 @@
 class GroupPostsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
-
     @group = Group.find(params[:group_post][:group_id])
     @group_post = @group.group_posts.new(group_post_params)
     @group_post.user = current_user
