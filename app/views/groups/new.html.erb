@@ -22,11 +22,12 @@
             <%= f.label :name, "グループ名" %>
             <%= f.text_field :name, autofocus: true, class: "shadow-sm form-control" %>
           </div>
-          
+
           <div class="field">
             <%= f.label :description, "グループの説明" %>
             <%= f.text_area :description, class: "shadow-sm form-control" %>
           </div>
+          <br>
           <div class="actions text-center">
             <%= f.submit "作成する", class: "shadow btn btn-secondary rounded-pill" %>
           </div>

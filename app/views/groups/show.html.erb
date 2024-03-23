@@ -3,7 +3,7 @@
   <div class="col-8">
     <div class="card">
       <div class="card-body">
-    <h1><%= @group.name %></h1>
+    <h1><span class="title-marker"><%= @group.name %></span></h1>
     <p>グループオーナー：<%= @group.owner.nickname %></p>
     <p><strong>説明:</strong> <%= @group.description %></p>
       <% if user_signed_in? %>
