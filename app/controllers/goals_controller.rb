@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-   before_action :is_matching_login_user, only: [:edit, :update, :destroy, :lookback_add, :status_update]
+   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   def new
     @goal = Goal.new
   end
