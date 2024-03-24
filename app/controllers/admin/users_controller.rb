@@ -19,9 +19,10 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @goals = @user.goals
   end
+  #目標の削除
   def destroy
     @user = User.find(params[:id])
-    @goal = Goal.find(params[:id])
+    @goal = Goal.find(params[:goal_id])
     @goal.destroy
     redirect_to admin_users_path, notice: "削除が完了しました"
   end

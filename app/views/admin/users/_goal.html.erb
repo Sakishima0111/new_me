@@ -27,7 +27,7 @@
           </div>
           <div class="col-6 text-right">
             <%= time_ago_in_words(goal.created_at) %>前
-            <%= link_to "削除", admin_user_path(goal), class: "btn btn-danger btn-sm rounded-pill", method: :delete, data: {confirm: "管理者として削除しますか？"} %>
+            <%= link_to "削除", admin_user_path(@user, goal_id: goal.id), class: "btn btn-danger btn-sm rounded-pill", method: :delete, data: {confirm: "管理者として削除しますか？"} %>
           </div>
         </div>
       </div>
