@@ -1,6 +1,6 @@
 <h1 class="text-center text-light"><%= @user.nickname %>さんの目標一覧 </h1>
 <div class="card-deck">
-<% @goals.each do |goal| %>
-<%= render "goal", goal: goal %>
-<% end %>
+  <% @goals.each do |goal| %>
+    <%= render "goal", goal: goal %>
+  <% end %>
 </div>

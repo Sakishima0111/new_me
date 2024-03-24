@@ -20,7 +20,7 @@
         </div>
         <div class="col-1">
           <% if comment.user == current_user %>
-            <%= link_to goal_comment_path(comment.goal, comment), method: :delete, class: "btn btn-light rounded-pill float-end", remote: true, data: {confirm: "目標を削除してもよろしいですか？"} do %>
+            <%= link_to goal_comment_path(comment.goal, comment), method: :delete, class: "btn btn-light rounded-pill float-end", remote: true, data: {confirm: "コメントを削除してもよろしいですか？"} do %>
               <i class="fa-solid fa-trash-can "></i>
             <% end %>
           <% end %>

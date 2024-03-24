@@ -1,62 +1,32 @@
-Admin.find_or_create_by!(
-   email: 'admin@admin',
-   password: 'testtest'
-)
-User.find_or_create_by!(
-   email: 'cat@cat',
-   nickname: 'ネコ',
-   introduction: 'テストユーザー1',
-   password: "testtest"
-)
-User.find_or_create_by!(
-   email: 'dog@dog',
-   nickname: 'いぬ',
-   introduction: 'テストユーザー2',
-   password: "testtest"
-)
-User.find_or_create_by!(
-   email: 'alpaca@hoge',
-   nickname: 'アルパカ',
-   introduction: 'テストユーザー3',
-   password: "testtest"
-)
-User.find_or_create_by!(
-   email: 'bear@hoge',
-   nickname: 'クマ',
-   introduction: 'テストユーザー4',
-   password: "testtest"
-)
-User.find_or_create_by!(
-   email: 'camel@hoge',
-   nickname: 'ラクダ',
-   introduction: 'テストユーザー5',
-   password: "testtest"
-)
-User.find_or_create_by!(
-   email: 'deer@hoge',
-   nickname: 'シカ',
-   introduction: 'テストユーザー6',
-   password: "testtest"
-)
-User.find_or_create_by!(
-   email: 'donkey@hoge',
-   nickname: 'ロバ',
-   introduction: 'テストユーザー7',
-   password: "testtest"
-)
-User.find_or_create_by!(
-   email: 'fox@hoge',
-   nickname: 'キツネ',
-   introduction: 'テストユーザー8',
-   password: "testtest"
-)
-User.find_or_create_by!(
-   email: 'goat@hoge',
-   nickname: 'ヤギ',
-   introduction: 'テストユーザー9',
-   password: "testtest"
-)
-Category.find_or_create_by!([
+
+puts "seedの実行を開始"
+Admin.find_or_create_by!(email: 'admin@admin') do |admin|
+  admin.password = ENV["SECRET_KEY"]
+end
+
+10.times do |n|
+  password = "testuser#{n + 1}"
+  nickname = "testuser#{n + 1}"
+
+  User.create!(
+    email: "test#{n + 1}@hoge",
+    nickname: nickname,
+    introduction: "テストユーザーです。",
+    password: password,
+    password_confirmation: password
+  )
+end
+# 10.times do |n|
+#     password = "testuser#{n + 1}"
+#     nickname = "testuser#{n + 1}"
+#     User.create(
+#       email: "test#{n + 1}@hoge",
+#       nickname: nickname,
+#       introduction: "テストユーザーです。",
+#       encrypted_password: password
+#     )
+# end
+category_data = [
   { name: '勉強・資格' },
   { name: '筋トレ・ダイエット' },
   { name: '生活' },
@@ -71,9 +41,26 @@ Category.find_or_create_by!([
   { name: 'アート' },
   { name: '技術' },
   { name: '環境' },
-  { name: 'その他' },
-])
+  { name: 'その他' }
+]
 
+category_data.each do |data|
+  Category.find_or_create_by!(data)
+end
 
+title= {}
+User.all.each do |user|
+  10.times do
+    Goal.create!(
+      title: "筋トレを毎日する",
+      content: "家で毎日30分筋トレをする",
+      user: user,
+      category_id: rand(1..10),
+      deadline: Random.rand(DateTime.new(2024, 5, 1) ... DateTime.new(2024, 7, 1)),
+      reward: "チートデイをする！"
+    )
+  end
+end
 
+puts "seedの実行が完了しました"
 
