@@ -1,20 +1,16 @@
 
 puts "seedの実行を開始"
+
 Admin.find_or_create_by!(email: 'admin@admin') do |admin|
   admin.password = ENV["SECRET_KEY"]
 end
 
 10.times do |n|
-  password = "testuser#{n + 1}"
-  nickname = "testuser#{n + 1}"
-
-  User.create!(
-    email: "test#{n + 1}@hoge",
-    nickname: nickname,
-    introduction: "テストユーザーです。",
-    password: password,
-    password_confirmation: password
-  )
+  User.find_or_create_by!(email: "test#{n + 1}@hoge") do |user|
+    user.nickname = "testuser#{n + 1}"
+    user.introduction = "テストユーザーです。"
+    user.password = "testuser#{n + 1}"
+  end
 end
 # 10.times do |n|
 #     password = "testuser#{n + 1}"
@@ -48,17 +44,15 @@ category_data.each do |data|
   Category.find_or_create_by!(data)
 end
 
-title= {}
 User.all.each do |user|
-  10.times do
-    Goal.create!(
-      title: "筋トレを毎日する",
-      content: "家で毎日30分筋トレをする",
-      user: user,
-      category_id: rand(1..10),
-      deadline: Random.rand(DateTime.new(2024, 5, 1) ... DateTime.new(2024, 7, 1)),
-      reward: "チートデイをする！"
-    )
+  10.times do |n|
+    Goal.find_or_create_by!(title: "筋トレを毎日する_#{n}") do |goal|
+      goal.content = "家で毎日30分筋トレをする"
+      goal.user = user
+      goal.category_id = rand(1..10)
+      goal.deadline = Random.rand(DateTime.new(2024, 5, 1) ... DateTime.new(2024, 7, 1))
+      goal.reward = "チートデイをする！"
+    end
   end
 end
 
