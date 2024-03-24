@@ -77,7 +77,7 @@ class GoalsController < ApplicationController
   def goal_params
     params.require(:goal).permit(:title, :content, :deadline, :reward, :status, :category_id, :lookback)
   end
-  
+
   def is_matching_login_user
     if params[:goal_id].present?
       goal_id = params[:goal_id]

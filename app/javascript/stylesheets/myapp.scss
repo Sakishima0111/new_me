@@ -13,9 +13,11 @@ main {
   padding-top: 5vh;
   padding-bottom: 5vh;
 }
+
 header{
   height: 10vh;
 }
+
 .navbar-brand .logo{
   width: 120px;
   height: 60px;
@@ -244,7 +246,7 @@ footer{
 span.title-marker{
   background: linear-gradient(transparent 60%, rgba(255, 153, 0,0.5) 50%);
 }
-
+// 目標のcontentの高さ
 .card-content>.trix-content>div{
   height: 70px;
   overflow: hidden;

@@ -17,5 +17,7 @@
   <% @goals.each do |goal| %>
     <%= render "users/goal", goal: goal %>
   <% end %>
-  <%= paginate @goals, theme: 'bootstrap-5', class: "paginations" %>
+</div>
+<div class="text-center">
+  <%= paginate @goals, theme: 'bootstrap-5', nav_class: "d-inline-block"  %>
 </div>
