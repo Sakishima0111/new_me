@@ -1,23 +1,23 @@
 <div class="row">
-  <h4 class="text-light">タイトルで投稿を検索</h4>
+
   <form class="form-inline">
     <%= form_tag({controller:"goals",action:"index"}, method: :get) do %>
       <div class="input-group">
-        <%= text_field_tag :search, {}, {class: 'form-control'} %>
-        <%= submit_tag '検索する', class: "btn btn-light" %>
+        <%= text_field_tag :search, {}, {placeholder: "タイトル検索", class: 'form-control'}%>
+        <%= button_tag type: "submit", class: "btn btn-secondary" do %>
+          <i class="fas fa-search text-light"></i>
+        <% end %>
       </div>
     <% end %>
   </form>
   <h1 class="text-light text-center">Goals</h1>
   <%= render "categories/index", categories: @categories %>
 </div>
-
-
 <div class="card-deck">
   <% @goals.each do |goal| %>
     <%= render "users/goal", goal: goal %>
   <% end %>
 </div>
 <div class="text-center">
-  <%= paginate @goals, theme: 'bootstrap-5', nav_class: "d-inline-block"  %>
+  <%= paginate @goals, theme: 'bootstrap-5',nav_class: "d-inline-block"  %>
 </div>

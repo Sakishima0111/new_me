@@ -55,19 +55,14 @@ goals = [
 ]
 
 goals.each do |goal|
-  # 一度目標をタイトルで検索
-  goal_data = Goal.find_by(title: goal[:title])
-  # 該当目標がなければ、createする
-  if goal_data.nil?
-    Goal.create(
-      content: goal[:content],
-      user_id: rand(1..10),
-      category_id: goal[:category],
-      deadline: Random.rand(DateTime.new(2024, 5, 1) ... DateTime.new(2025, 1, 1)),
-      reward: goal[:reward]
-    )
+  # 一度目標をタイトルで検索し、見つからなければデータを作成する
+  Goal.find_or_create_by(title: goal[:title]) do |g|
+    g.content = goal[:content]
+    g.user_id = User.all.ids.sample
+    g.category_id = goal[:category]
+    g.deadline = Random.rand(DateTime.new(2024, 5, 1) ... DateTime.new(2025, 1, 1))
+    g.reward = goal[:reward]
   end
-  puts "保存したデータ：#{goal[:title]}"
 end
 
 # User.all.each do |user|

@@ -33,12 +33,8 @@
         <%= render "relationship" , user: @user %>
       </div>
     </div>
-    <div class="col-1">
-      <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
-        <%= link_to chat_path(@user.id), class: "btn btn-light rounded-pill" do %>
-        <i class="fa-regular fa-envelope"></i>
-        <% end %>
-      <% end %>
+    <div id="dm_<%= @user.id %>" class="col-1">
+      <%= render "dm" , user: @user %>
     </div>
     <div class="col-1"></div>
     <% if @user.id == current_user.id %>
@@ -49,15 +45,11 @@
         </div>
       <% end %>
     <% end %>
-      <div class="col-2">
-        <%= link_to follows_user_path(@user.id), class: "text-light", style: "text-decoration:none;" do %>
-          <%= @user.followings.count %> follow
-        <% end %>
+      <div id="followings_<%= @user.id %>" class="col-2">
+        <%= render "followings" , user: @user %>
       </div>
-      <div class="col-2">
-        <%= link_to followers_user_path(@user.id), class: "text-light", style: "text-decoration:none;" do %>
-          <%= @user.followers.count %> follower
-        <% end %>
+      <div id="followers_<%= @user.id %>" class="col-2">
+        <%= render "followers" , user: @user %>
       </div>
 
   </div>

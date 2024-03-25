@@ -244,7 +244,7 @@ footer{
 }
 // 目標のタイトルにマーカー
 span.title-marker{
-  background: linear-gradient(transparent 60%, rgba(255, 153, 0,0.5) 50%);
+  background: linear-gradient(transparent 60%, rgba(255, 153, 0,0.5) 50%) !important;
 }
 // 目標のcontentの高さ
 .card-content>.trix-content>div{

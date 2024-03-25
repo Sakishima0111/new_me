@@ -13,11 +13,13 @@
       </div>
     </div>
     <div class="card-body">
-      <h5 class="card-title"><%=link_to goal.title, goal_path(goal.id), style: "text-decoration:none;" %></h5>
-      <div class="card-text card-content">
-        <i class="fa-regular fa-calendar"></i> <%= l goal.deadline %>
-        <%= goal.content %>
-      </div>
+      <%= link_to goal_path(goal.id), style: "text-decoration:none;" do%>
+        <h5 class="card-title"><span class="title-marker", style= "text-decoration:none; color: #6c6b6b !important;"><%= goal.title %></span></h5>
+        <div class="card-text card-content">
+          <i class="fa-regular fa-calendar"></i> <%= l goal.deadline %>
+          <%= goal.content %>
+        </div>
+      <% end %>
     </div>
     <div class="card-footer">
       <div class="row">

@@ -1,0 +1,5 @@
+<% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+  <%= link_to chat_path(user.id), class: "btn btn-light rounded-pill" do %>
+  <i class="fa-regular fa-envelope"></i>
+  <% end %>
+<% end %>
