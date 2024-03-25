@@ -67,19 +67,20 @@ goals.each do |goal|
       reward: goal[:reward]
     )
   end
+  puts "保存したデータ：#{goal[:title]}"
 end
 
-User.all.each do |user|
-  10.times do |n|
-    Goal.find_or_create_by!(title: "筋トレを毎日する_#{n}") do |goal|
-      goal.content = "家で毎日30分筋トレをする"
-      goal.user = user
-      goal.category_id = rand(1..15)
-      goal.deadline = Random.rand(DateTime.new(2024, 5, 1) ... DateTime.new(2024, 7, 1))
-      goal.reward = "チートデイをする！"
-    end
-  end
-end
+# User.all.each do |user|
+#   10.times do |n|
+#     Goal.find_or_create_by!(title: "筋トレを毎日する_#{n}") do |goal|
+#       goal.content = "家で毎日30分筋トレをする"
+#       goal.user = user
+#       goal.category_id = rand(1..15)
+#       goal.deadline = Random.rand(DateTime.new(2024, 5, 1) ... DateTime.new(2024, 7, 1))
+#       goal.reward = "チートデイをする！"
+#     end
+#   end
+# end
 
 puts "seedの実行が完了しました"
 

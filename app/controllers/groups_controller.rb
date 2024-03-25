@@ -50,7 +50,7 @@ class GroupsController < ApplicationController
     group = Group.find(params[:id])
     group.destroy
     flash[:notice] = "グループの削除に成功しました"
-    redirect_to root_path
+    redirect_to groups_path
   end
 
   def group_member

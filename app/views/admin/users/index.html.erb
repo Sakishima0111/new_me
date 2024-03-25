@@ -39,7 +39,9 @@
           </tr>
           　<% end %>
         </table>
-        <%= paginate @users, theme: 'bootstrap-5', class: "paginations" %>
+        <div class="text-center">
+          <%= paginate @users, theme: 'bootstrap-5', class: "paginations", nav_class: "d-inline-block" %>
+        </div>
       </div>
     </div>
   </div>
