@@ -4,11 +4,13 @@
         <div class="col-2">
           <%= image_tag goal.user.get_profile_image, size: '30x30', style: 'border-radius: 25%' %>
         </div>
-        <div class="col-5">
+        <div class="col-7 px-0">
           <%= link_to goal.user.nickname, user_path(goal.user.id), style: "text-decoration:none;" %>
         </div>
-        <div class="col-5 text-right goal-status">
-          <%= goal.status_i18n %>
+        <div class="col-3 px-0 goal-status">
+          <div class="btn btn-sm btn-outline-secondary rounded-pill">
+            <%= goal.status_i18n %>
+          </div>
         </div>
       </div>
     </div>
