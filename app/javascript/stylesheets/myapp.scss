@@ -251,3 +251,27 @@ span.title-marker{
   height: 70px;
   overflow: hidden;
 }
+.back-to-top {
+  display: none;
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  color: #7ea0bc;
+  padding: 1rem;
+  border-radius: 50%;
+  display: inline-block;
+  text-decoration: none !important;
+}
+.back-to-top::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: -1;
+}

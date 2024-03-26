@@ -65,6 +65,7 @@ goals.each do |goal|
     g.reward = goal[:reward]
   end
 end
+
 groups = [
   {name: "英検2級目指す", description: "はじめましての方へ。このグループでは日々の学習記録を残すようにしています。合格報告もお待ちしております！"},
   {name: "未経験からエンジニア", description: "エンジニアどうしで情報共有し、成長する会。今日学んだことを投稿してください。"},
