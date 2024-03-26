@@ -7,7 +7,7 @@ end
 
 10.times do |n|
   User.find_or_create_by!(email: "test#{n + 1}@hoge") do |user|
-    user.nickname = "testuser#{n + 1}"
+    user.nickname = "テストユーザー#{n + 1}"
     user.introduction = "テストユーザーです。"
     user.password = "testuser#{n + 1}"
   end
@@ -54,6 +54,7 @@ goals = [
    {title: "12時に寝る", content: "家に帰ったら先にお風呂を済ませる", category: 15, reward: "健康体になる"},
 ]
 
+
 goals.each do |goal|
   # 一度目標をタイトルで検索し、見つからなければデータを作成する
   Goal.find_or_create_by(title: goal[:title]) do |g|
@@ -64,18 +65,21 @@ goals.each do |goal|
     g.reward = goal[:reward]
   end
 end
+groups = [
+  {name: "英検2級目指す", description: "はじめましての方へ。このグループでは日々の学習記録を残すようにしています。合格報告もお待ちしております！"},
+  {name: "未経験からエンジニア", description: "エンジニアどうしで情報共有し、成長する会。今日学んだことを投稿してください。"},
+  {name: "マッスル会", description: "みんなで筋肉の様子を投稿しよう！写真でも体脂肪率でも可〇これからマッチョを目指す方も大歓迎！"},
+  {name: "毎日早寝", description: "毎日寝る前に寝た時間を記録。記録後布団へGO!"},
+  {name: "料理初心者", description: "日々の料理を投稿してください！おいしそうだったらほめて！"},
+]
 
-# User.all.each do |user|
-#   10.times do |n|
-#     Goal.find_or_create_by!(title: "筋トレを毎日する_#{n}") do |goal|
-#       goal.content = "家で毎日30分筋トレをする"
-#       goal.user = user
-#       goal.category_id = rand(1..15)
-#       goal.deadline = Random.rand(DateTime.new(2024, 5, 1) ... DateTime.new(2024, 7, 1))
-#       goal.reward = "チートデイをする！"
-#     end
-#   end
-# end
+groups.each do |group|
+  Group.find_or_create_by(name: group[:name]) do |gr|
+    gr.name = group[:name]
+    gr.description = group[:description]
+    gr.owner_id = User.all.ids.sample
+  end
+end
 
 puts "seedの実行が完了しました"
 
