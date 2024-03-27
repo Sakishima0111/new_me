@@ -33,9 +33,8 @@
                           <% end %>
                     </div>
                   </div>
-                  <% end %>
-                    <% end %>
-
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -67,9 +66,9 @@
                       <%= form_with model: @goal, url: goal_goal_lookback_add_path(@goal.id), method: :patch do |f| %>
                         <div class="form-group row">
                           <%= f.label :lookback, '目標の振り返り' , class: 'col-sm-3 col-form-label' %>
-                            <div class="col-sm-9">
-                              <%= f.text_area :lookback, class: 'form-control' %>
-                            </div>
+                          <div class="col-sm-9">
+                            <%= f.text_area :lookback, class: 'form-control' %>
+                          </div>
                         </div>
                         <div class="form-group row">
                           <div class="col-sm-12 text-center ">
@@ -100,7 +99,7 @@
                   </div>
                 </div>
                 <% else %>
-                  <% end %>
+              <% end %>
                     <!--ここまで-->
       </div>
       <div class="card-footer">
@@ -123,21 +122,17 @@
           </div>
           <div class="col-8">
             <div class="text-right">
-
-              <%= link_to "https://twitter.com/share?url=#{goal_url(@goal)}&text=【新たな目標】%0a%0a#{@goal.title}" ,
-                target: '_blank' , data: { toggle: "tooltip" , placement: "bottom" }, title: "Xでシェア" ,
-                class: "btn btn-light rounded-pill" do %>
+              <%= link_to "https://twitter.com/share?url=#{goal_url(@goal)}&text=【新たな目標】%0a%0a#{@goal.title}" ,target: '_blank' , data: { toggle: "tooltip" , placement: "bottom" }, title: "Xでシェア" ,class: "btn btn-light rounded-pill" do %>
                 <i class="fa-brands fa-x-twitter"></i>
+              <% end %>
+              <% if @goal.user.id==current_user.id %>
+                <%= link_to edit_goal_path(@goal.id), class: "btn btn-light rounded-pill" , title: "編集する" do %>
+                  <i class="fa-solid fa-pen-to-square "></i>
                 <% end %>
-                  <% if @goal.user.id==current_user.id %>
-                    <%= link_to edit_goal_path(@goal.id), class: "btn btn-light rounded-pill" , title: "編集する" do %>
-                      <i class="fa-solid fa-pen-to-square "></i>
-                      <% end %>
-                        <%= link_to goal_path(@goal.id), class: "btn btn-light rounded-pill" , title: "削除する" , method:
-                          :delete, data: {confirm: "目標を削除してもよろしいですか？" } do %>
-                          <i class="fa-solid fa-trash-can "></i>
-                          <% end %>
-                            <% end %>
+                <%= link_to goal_path(@goal.id), class: "btn btn-light rounded-pill" , title: "削除する" , method: :delete, data: {confirm: "目標を削除してもよろしいですか？" } do %>
+                  <i class="fa-solid fa-trash-can "></i>
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -147,6 +142,7 @@
     </div>
 
     <!--コメントの非同期化-->
+    <div class="success-message"></div>
     <div id="comment_index">
       <%= render "comments/index" , comments: @comments %>
     </div>

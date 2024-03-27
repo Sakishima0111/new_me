@@ -1,5 +1,8 @@
 // 通報成功メッセージを表示
-$('.success-message').text('通報が成功しました。');
+$('.success-message').text('コメントの通報が成功しました。');
+setTimeout(function() {
+  $(".success-message").fadeOut(100)
+}, 1500)
 
 // モーダルウィンドウを閉じる
 $('#report-modal').addClass('fade-out');
