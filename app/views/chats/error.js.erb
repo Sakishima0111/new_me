@@ -1,1 +1,5 @@
-$("#chats_errors").html("<%= j(render 'layouts/errors', model: @chat) %>");
+$("#chats_errors").css('display', 'block');
+$("#chats_errors").html("<%= j(render 'layouts/errors', model: @chat) %>")
+setTimeout(function() {
+  $("#chats_errors").fadeOut(1000)
+}, 1000)
