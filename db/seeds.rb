@@ -75,12 +75,15 @@ groups = [
 ]
 
 groups.each do |group|
-  Group.find_or_create_by(name: group[:name]) do |gr|
+  user = User.all.ids.sample
+  g = Group.find_or_create_by(name: group[:name]) do |gr|
     gr.name = group[:name]
     gr.description = group[:description]
-    gr.owner_id = User.all.ids.sample
+    gr.owner_id = user
   end
+  g.users << User.find(user)
 end
 
-puts "seedの実行が完了しました"
+puts "seedの実行が完了しました。"
+
 

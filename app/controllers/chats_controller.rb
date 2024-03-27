@@ -33,8 +33,9 @@ class ChatsController < ApplicationController
     @chat = current_user.chats.new(chat_params)
     # バリデーションに合格しない場合はエラーを表示
     render :error unless @chat.save
-    
+
   end
+
 
   # チャットメッセージの削除
   def destroy
@@ -53,7 +54,7 @@ class ChatsController < ApplicationController
     user = User.find(params[:id])
     # ユーザーがお互いにフォローしているか確認し、していない場合はリダイレクト
     unless current_user.following?(user) && user.following?(current_user)
-      redirect_to user_path(current_user.id) 
+      redirect_to user_path(current_user.id)
     end
   end
 end
