@@ -84,5 +84,6 @@ groups.each do |group|
   g.users << User.find(user)
 end
 
-puts "seedの実行が完了しました"
+puts "seedの実行が完了しました。"
+
 
