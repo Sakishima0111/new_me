@@ -17,6 +17,4 @@ class CheersController < ApplicationController
     render 'replace_btn'
   end
 
-  def index
-  end
 end

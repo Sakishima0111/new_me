@@ -45,16 +45,16 @@
         </div>
       <% end %>
     <% end %>
-      <div id="followings_<%= @user.id %>" class="col-2">
-        <%= render "followings" , user: @user %>
-      </div>
-      <div id="followers_<%= @user.id %>" class="col-2">
-        <%= render "followers" , user: @user %>
-      </div>
+    <div id="followings_<%= @user.id %>" class="col-2">
+      <%= render "followings" , user: @user %>
+    </div>
+    <div id="followers_<%= @user.id %>" class="col-2">
+      <%= render "followers" , user: @user %>
+    </div>
 
   </div>
-<hr>
-<div class="container">
+  <hr>
+  <div class="container">
 
         <ul class="nav nav-underline nav-justified">
           <li class="nav-item">

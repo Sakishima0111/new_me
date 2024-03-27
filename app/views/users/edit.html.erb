@@ -3,29 +3,30 @@
     <div class="col-8">
       <h1 class="text-light text-center">Edit Profile</h1>
       <%= form_with model: @user do |f| %>
-         <div class="card">
-           <div class="card-body">
-            <%  @user.errors.full_messages.each do |message| %>
-              <div class="alert alert-danger" role="alert">
-                <p><%= message %></p>
+       <div class="card">
+         <div class="card-body">
+          <%  @user.errors.full_messages.each do |message| %>
+            <div class="alert alert-danger" role="alert">
+              <p><%= message %></p>
+            </div>
+          <% end %>
+            <label for="inputName">ニックネーム</label><br>
+            <%= f.text_field :nickname, autofocus: true, id:"inputName", class: "shadow-sm form-control" %><br>
+            <label for="formFile" class="form-label">プロフィールイメージ</label><br>
+            <%= f.file_field :image, class: "shadow-sm form-control", type: "file", id: "formFile", accept: "image/*" %><br>
+            <label for="inputBody">自己紹介</label><br>
+            <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction",class: "shadow-sm form-control"%><br>
+
+            <% unless @user.email == 'guest@example.com'%>
+              <div class="text-center">
+                <%= f.submit "ユーザー情報を更新する", class: "shadow btn btn-secondary rounded-pill " %>
+              </div>
+              <div class="text-right">
+                <%= link_to "退会手続きをする", check_user_path, class:"btn btn-outline-danger rounded-pill shadow-sm " %>
               </div>
             <% end %>
-              <label for="inputName">ニックネーム</label><br>
-              <%= f.text_field :nickname, autofocus: true, id:"inputName", class: "shadow-sm form-control" %><br>
-              <label for="formFile" class="form-label">プロフィールイメージ</label><br>
-              <%= f.file_field :image, class: "shadow-sm form-control", type: "file", id: "formFile", accept: "image/*" %><br>
-              <label for="inputBody">自己紹介</label><br>
-              <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction",class: "shadow-sm form-control"%><br>
-              <% unless @user.email == 'guest@example.com'%>
-                <div class="text-center">
-                  <%= f.submit "ユーザー情報を更新する", class: "shadow btn btn-secondary rounded-pill " %>
-                </div>
-                <div class="text-right">
-                  <%= link_to "退会手続きをする", check_user_path, class:"btn btn-outline-danger rounded-pill shadow-sm " %>
-                </div>
-              <% end %>
-            </div>
           </div>
+        </div>
       <% end %>
     </div>
 </div>

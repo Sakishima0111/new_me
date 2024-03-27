@@ -4,30 +4,29 @@
   <h1 class="text-center text-light">グループメンバー</h1>
   <div class="card">
     <div class="card-body">
-
-        <table class="table">
-          <tr>
-            <th>ユーザー名</th>
-            <th>自己紹介</th>
-            <th>フォロー情報</th>
-          </tr>
-          <% @users.each do |user| %>
-          <tr>
-            <td>
-              <%= link_to user.nickname, user_path(user), style: "text-decoration:none;" %>
-            </td>
-            <td>
-              <%= truncate(user.introduction, length: 35) %>
-            </td>
-            <td>
-              <div id="relationship_<%= user.id %>">
-                <%= render "users/relationship", user: user %>
-              </div>
-            </td>
-          </tr>
-          <% end %>
-        </table>
-        <%= paginate @users, theme: 'bootstrap-5', class: "paginations" %>
+      <table class="table">
+        <tr>
+          <th>ユーザー名</th>
+          <th>自己紹介</th>
+          <th>フォロー情報</th>
+        </tr>
+        <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user.nickname, user_path(user), style: "text-decoration:none;" %>
+          </td>
+          <td>
+            <%= truncate(user.introduction, length: 35) %>
+          </td>
+          <td>
+            <div id="relationship_<%= user.id %>">
+              <%= render "users/relationship", user: user %>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <%= paginate @users, theme: 'bootstrap-5', class: "paginations" %>
     </div>
   </div>
 </div>

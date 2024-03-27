@@ -2,30 +2,30 @@
   <div class="col-2"></div>
   <div class="col-8">
   <h3 class="text-light text-center">会員情報編集</h3>
-    <div class="card">
-      <div class="card-body">
-        <%= form_with model:@user, url: admin_user_path(@user), method: :patch do |f| %>
-          <div class="custom-control custom-radio">
-            <div class="row">
-               <div class="col-5">
-                 <strong>
-                   <%= f.label :is_active do %>
-                     <%= @user.nickname %>さんの会員ステータス
-                   <% end %>
-                 </strong>
-               </div>
-               <div class="col-2">
-                 <%= f.radio_button :is_active, true %> <%= f.label :有効 %>
-               </div>
-               <div class="col-2">
-                 <%= f.radio_button :is_active, false %> <%= f.label :退会 %>
-               </div>
-            </div>
-          </div><br>
-          <div class="text-center">
-            <%= f.submit "ステータスを更新", class: "btn btn-outline-success", data: {confirm: "ステータスを更新させますか？"} %>
+  <div class="card">
+    <div class="card-body">
+      <%= form_with model:@user, url: admin_user_path(@user), method: :patch do |f| %>
+        <div class="custom-control custom-radio">
+          <div class="row">
+             <div class="col-5">
+               <strong>
+                 <%= f.label :is_active do %>
+                   <%= @user.nickname %>さんの会員ステータス
+                 <% end %>
+               </strong>
+             </div>
+             <div class="col-2">
+               <%= f.radio_button :is_active, true %> <%= f.label :有効 %>
+             </div>
+             <div class="col-2">
+               <%= f.radio_button :is_active, false %> <%= f.label :退会 %>
+             </div>
           </div>
-        <% end %>
-      </div>
+        </div><br>
+        <div class="text-center">
+          <%= f.submit "ステータスを更新", class: "btn btn-outline-success", data: {confirm: "ステータスを更新させますか？"} %>
+        </div>
+      <% end %>
     </div>
+  </div>
 </div>
