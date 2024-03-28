@@ -13,7 +13,7 @@
             <label for="inputName">ニックネーム</label><br>
             <%= f.text_field :nickname, autofocus: true, id:"inputName", class: "shadow-sm form-control" %><br>
             <label for="formFile" class="form-label">プロフィールイメージ</label><br>
-            <%= f.file_field :image, class: "shadow-sm form-control", type: "file", id: "formFile", accept: "image/*" %><br>
+            <%= f.file_field :image, class: "shadow-sm form-control", type: "file", id: "formFile", accept: "image/jpeg, image/png" %><br>
             <label for="inputBody">自己紹介</label><br>
             <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction",class: "shadow-sm form-control"%><br>
 
