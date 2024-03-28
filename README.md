@@ -22,9 +22,9 @@ SNSを見ている世代は、SNSで見るような憧れる人になりたい�
 ・憧れているスポーツ選手がいてその人のように努力したいが、自分１人では怠けてしまい続けられないとき
 ​
 ## 設計書
-・案件定義書: https://docs.google.com/document/d/1bJsgleYUDk_f0HHki_k7Eq9CzuNQMRDSIWL7iydZJDs/edit?usp=sharing  
-・ER図: https://drive.google.com/file/d/1m3XSHH-xThFWTCYN8aA2Te8Q3F4fHdSf/view?usp=sharing  
-・テーブル定義書: https://docs.google.com/spreadsheets/d/1D9NR156bmwmays0AMYNfzSQ2-RQ9J5-GNP6_7vtY2EI/edit?usp=sharing  
+-[案件定義](https://docs.google.com/document/d/1bJsgleYUDk_f0HHki_k7Eq9CzuNQMRDSIWL7iydZJDs/edit?usp=sharing)
+-[ER図]( https://drive.google.com/file/d/1m3XSHH-xThFWTCYN8aA2Te8Q3F4fHdSf/view?usp=sharing)  
+-[テーブル定義書](https://docs.google.com/spreadsheets/d/1D9NR156bmwmays0AMYNfzSQ2-RQ9J5-GNP6_7vtY2EI/edit?usp=sharing)
 
 ## 開発環境
 - OS：Linux(CentOS)
