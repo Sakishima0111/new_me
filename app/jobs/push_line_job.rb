@@ -17,6 +17,7 @@ class PushLineJob < ApplicationJob
               }
           response = line_client.push_message(user.uid, message)
           logger.info "PushLineSuccess"
+          puts "処理が成功しました"
         end
       # end
     end
