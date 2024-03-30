@@ -22,13 +22,13 @@
 require File.expand_path(File.dirname(__FILE__) + '/environment')
 
 # cronを実行する環境変数
-rails_env = ENV['RAILS_ENV'] || :development
+rails_env = ENV['RAILS_ENV'] || :production
 
 # cronを実行する環境変数をセット
 set :environment, rails_env
 # cronのログの吐き出し場所
 set :output, File.expand_path(File.dirname(__FILE__) + '/../log/cron.log')
 
-every 1.minute do
+every :minute do
   runner 'PushLineJob.perform_now'  # メソッドの実行に"perform_now"を追加
 end
