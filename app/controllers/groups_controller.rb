@@ -2,10 +2,11 @@ class GroupsController < ApplicationController
  before_action :authenticate_user!, except: [:index, :show]
  before_action :owner?, only: [:edit, :update, :destroy]
 
+  #グループの新規登録
   def new
     @group = Group.new
   end
-
+  #グループの作成
   def create
     @group = Group.new(group_params)
     @group.owner = current_user
@@ -17,25 +18,26 @@ class GroupsController < ApplicationController
       render :new
     end
   end
+  #グループ一覧
   def index
-    @groups = Group.all.page(params[:page]).per(10)
+    @groups = Group.all.page(params[:page]).per(10).order(created_at: :desc)
   end
-  #ログインユーザーの参加グループ
+  #ログインユーザーの参加グループ一覧
   def list
     @user = User.find(current_user.id)
-    @groups = @user.groups.page(params[:page]).per(10)
+    @groups = @user.groups.page(params[:page]).per(10).order(created_at: :desc)
   end
-
+  #グループ詳細ページ、投稿など
   def show
     @group = Group.find(params[:id])
     @groupposts = GroupPost.where(group_id: @group.id).all.order(created_at: :desc)
     @group_post = GroupPost.new
   end
-
+  #グループの編集(オーナーのみ可能)
   def edit
     @group = Group.find(params[:id])
   end
-
+  #グループの情報更新
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
@@ -52,7 +54,7 @@ class GroupsController < ApplicationController
     flash[:notice] = "グループの削除に成功しました"
     redirect_to groups_path
   end
-
+  #グループ内のメンバー一覧、フォロー可能
   def group_member
     @group = Group.find(params[:group_id])
     @users = @group.users.page(params[:page]).per(10)
@@ -66,6 +68,7 @@ class GroupsController < ApplicationController
   def group_post_params
     params.require(:group_post).permit(:content)
   end
+  #グループの作成者(オーナー)か
   def owner?
    group = Group.find(params[:id])
    if group.owner != current_user
