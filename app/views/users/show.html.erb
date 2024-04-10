@@ -12,50 +12,58 @@
   <div class="col-1"></div>
     <div class="col-9">
 
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-3 text-center">
-      <%= image_tag @user.get_profile_image, size: "180x180", style: 'border-radius: 25%' %>
-    </div>
-    <div class="col-md-1"></div>
-
-    <div class="col-md-7 text-light">
-      <h3><%= @user.nickname %></h3><br>
-      <%= @user.introduction %><br>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="col-2 text-center">
-      <!--非同期でフォロー-->
-      <div id="relationship_<%= @user.id %>">
-        <%= render "relationship" , user: @user %>
-      </div>
-    </div>
-    <div id="dm_<%= @user.id %>" class="col-1">
-      <%= render "dm" , user: @user %>
-    </div>
-    <div class="col-1"></div>
-    <% if @user.id == current_user.id %>
-      <% if @user.email == 'guest@example.com'%>
-      <% else %>
-        <div class="col-3 ">
-          <%= link_to "プロフィール情報を編集", edit_user_path(current_user), class: "btn btn-light rounded-pill"%>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3 text-center">
+          <%= image_tag @user.get_profile_image, size: "180x180", style: 'border-radius: 25%' %>
         </div>
-      <% end %>
-    <% end %>
-    <div id="followings_<%= @user.id %>" class="col-2">
-      <%= render "followings" , user: @user %>
-    </div>
-    <div id="followers_<%= @user.id %>" class="col-2">
-      <%= render "followers" , user: @user %>
-    </div>
+        <div class="col-md-1"></div>
 
-  </div>
-  <hr>
-  <div class="container">
-
+        <div class="col-md-7 text-light">
+          <h3><%= @user.nickname %></h3><br>
+          <%= @user.introduction %><br>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2 text-center">
+          <!--非同期でフォロー-->
+          <div id="relationship_<%= @user.id %>">
+            <%= render "relationship" , user: @user %>
+          </div>
+        </div>
+        <div id="dm_<%= @user.id %>" class="col-1">
+          <%= render "dm" , user: @user %>
+        </div>
+        <div class="col-1"></div>
+        <% if @user.id == current_user.id %>
+          <% if @user.email == 'guest@example.com'%>
+          <% else %>
+            <div class="col-3 ">
+              <div class="input-group">
+                <%= link_to  new_goal_path, class: "btn btn-light btn-lg" do %>
+                  <i class="fa-solid fa-plus"></i>
+                <% end %>
+                <%= link_to  group_groups_list_path(current_user), class: "btn btn-light btn-lg" do %>
+                  <i class="fa-solid fa-user-group"></i>
+                <% end %>
+                <%= link_to edit_user_path(current_user), class: "btn btn-light btn-lg" do %>
+                  <i class="fa-solid fa-gear"></i>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <div id="followings_<%= @user.id %>" class="col-2">
+          <%= render "followings" , user: @user %>
+        </div>
+        <div id="followers_<%= @user.id %>" class="col-2">
+          <%= render "followers" , user: @user %>
+        </div>
+      </div>
+      <hr>
+      <div class="container">
         <ul class="nav nav-underline nav-justified">
           <li class="nav-item">
             <a class="nav-link active text-light" data-toggle="tab" href="#in_progress">In progress</a>
@@ -69,43 +77,41 @@
         </ul>
         <!--固定位置で右下に新規投稿のボタンを置けるようにする-->
         <!--<%= link_to "New", new_goal_path, class: "btn btn-outline-primary ml-auto" %>-->
+        <div class="tab-content">
+          <div id="in_progress" class="tab-pane fade show active">
+            <div class="card-deck">
+            <% @in_progress_goals.each do |goal| %>
+              <%= render "goal", goal: goal %>
+            <% end %>
 
-
-      <div class="tab-content">
-        <div id="in_progress" class="tab-pane fade show active">
-          <div class="card-deck">
-          <% @in_progress_goals.each do |goal| %>
-            <%= render "goal", goal: goal %>
-          <% end %>
+            </div>
+            <div class="text-center">
+              <%= paginate @in_progress_goals, theme: 'bootstrap-5', nav_class: "d-inline-block" %>
+            </div>
 
           </div>
-          <div class="text-center">
-            <%= paginate @in_progress_goals, theme: 'bootstrap-5', nav_class: "d-inline-block" %>
+          <div id="not_started" class="tab-pane fade">
+            <div class="card-deck">
+            <% @not_started_goals.each do |goal| %>
+              <%= render "goal", goal: goal %>
+            <% end %>
+            </div>
+            <div class="text-center">
+              <%= paginate @not_started_goals, theme: 'bootstrap-5', nav_class: "d-inline-block"  %>
+            </div>
           </div>
-
-        </div>
-        <div id="not_started" class="tab-pane fade">
-          <div class="card-deck">
-          <% @not_started_goals.each do |goal| %>
-            <%= render "goal", goal: goal %>
-          <% end %>
-          </div>
-          <div class="text-center">
-            <%= paginate @not_started_goals, theme: 'bootstrap-5', nav_class: "d-inline-block"  %>
-          </div>
-        </div>
-        <div id="completed" class="tab-pane fade">
-          <div class="card-deck">
-          <% @completed_goals.each do |goal| %>
-            <%= render "goal", goal: goal %>
-          <% end %>
-          </div>
-          <div class="text-center">
-            <%= paginate @completed_goals, theme: 'bootstrap-5', nav_class: "d-inline-block"  %>
+          <div id="completed" class="tab-pane fade">
+            <div class="card-deck">
+            <% @completed_goals.each do |goal| %>
+              <%= render "goal", goal: goal %>
+            <% end %>
+            </div>
+            <div class="text-center">
+              <%= paginate @completed_goals, theme: 'bootstrap-5', nav_class: "d-inline-block"  %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   </div>
 </div>
